@@ -144,38 +144,6 @@ function renderJobsPage() {
                 </form>
             </div>
         </div>
-
-        <style>
-            .modal-large {
-                max-width: 800px;
-            }
-            .form-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-            }
-            @media (max-width: 768px) {
-                .form-row {
-                    grid-template-columns: 1fr;
-                }
-            }
-            .client-info-box {
-                background: #f8f9fa;
-                border-left: 4px solid var(--primary);
-                padding: 1rem;
-                border-radius: 8px;
-                margin-bottom: 1rem;
-            }
-            .client-info-box h4 {
-                margin: 0 0 0.5rem 0;
-                color: var(--headerColor);
-            }
-            .client-info-box p {
-                margin: 0.25rem 0;
-                color: var(--bodyTextColor);
-                font-size: 0.9rem;
-            }
-        </style>
     `;
 }
 
@@ -340,19 +308,6 @@ function displayJobs() {
                 }).join('')}
             </tbody>
         </table>
-
-        <style>
-            .badge {
-                padding: 0.4rem 0.8rem;
-                border-radius: 20px;
-                font-size: 0.85rem;
-                font-weight: 600;
-                display: inline-block;
-            }
-            .badge-primary { background: rgba(234, 67, 93, 0.1); color: var(--primary); }
-            .badge-secondary { background: rgba(54, 29, 73, 0.1); color: var(--secondary); }
-            .badge-success { background: rgba(40, 167, 69, 0.1); color: #28a745; }
-        </style>
     `;
 
     container.innerHTML = tableHTML;
