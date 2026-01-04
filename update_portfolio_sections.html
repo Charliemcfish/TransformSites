@@ -1,0 +1,41 @@
+<!-- Portfolio Section Template - Use this to replace portfolio sections on service pages -->
+
+<section id="gallery-45" style="padding: var(--sectionPadding); background: #fafbfc;">
+    <div class="cs-container" style="max-width: 80rem; margin: auto;">
+        <div class="cs-content" style="text-align: center; margin-bottom: 3rem; display: flex; flex-direction: column; align-items: center;">
+            <span class="cs-topper">We've worked with over</span>
+            <h2 class="cs-title" style="margin: 0 auto;">100+ Clients</h2>
+            <p class="cs-text" style="margin: 0 auto;">
+                The web design agency of choice for over 100+ businesses. Click any project to view the full case study.
+            </p>
+        </div>
+        <ul class="cs-image-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; list-style: none; padding: 0;">
+            <!-- Items vary by page - see individual examples below -->
+        </ul>
+        <div style="text-align: center;">
+            <a href="/portfolio" class="cs-button-solid">View Our Work</a>
+        </div>
+    </div>
+</section>
+<style>
+    .portfolio-item:hover .portfolio-item-overlay {
+        opacity: 1 !important;
+    }
+    .portfolio-item:hover .portfolio-item-title {
+        color: var(--primary) !important;
+    }
+</style>
+
+<!-- INDIVIDUAL PORTFOLIO ITEM TEMPLATE -->
+<li class="cs-item" style="aspect-ratio: 1; position: relative;">
+    <a href="#" data-case-study="CASE_STUDY_ID" class="portfolio-item card-hover" style="display: block; position: relative; height: 100%;">
+        <picture class="cs-picture" style="display: block; position: relative; width: 100%; height: 100%;">
+            <img loading="lazy" decoding="async" src="assets/images/IMAGE_NAME.webp" alt="ALT_TEXT" width="346" height="346" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.25);">
+        </picture>
+        <div class="portfolio-item-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(84, 45, 109, 0.9); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 1rem;">
+            <h3 class="portfolio-item-title" style="font-size: 1.25rem; margin-bottom: 0.5rem; transition: color 0.3s;">TITLE</h3>
+            <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">DESCRIPTION</p>
+            <span style="font-size: 0.875rem; font-weight: 700;">View Case Study →</span>
+        </div>
+    </a>
+</li>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/core-styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="../assets/logo.png" alt="Transform Sites Logo" class="login-logo">
+            <h1 class="login-title">Job Tracker</h1>
+            <p class="login-subtitle">Enter your PIN to access the dashboard</p>
+
+            <form id="loginForm" class="login-form">
+                <div class="pin-input-container">
+                    <input type="password"
+                           id="pinInput"
+                           class="pin-input"
+                           placeholder="Enter PIN"
+                           maxlength="8"
+                           autocomplete="off"
+                           required>
+                </div>
+                <button type="submit" class="login-button">Access Dashboard</button>
+                <p id="errorMessage" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

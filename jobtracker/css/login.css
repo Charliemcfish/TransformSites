@@ -1,0 +1,142 @@
+/* Login Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #361D49 0%, #532e70 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-box {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #4E4B66;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pin-input-container {
+    position: relative;
+}
+
+.pin-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+}
+
+.pin-input:focus {
+    outline: none;
+    border-color: #EA435D;
+    box-shadow: 0 0 0 3px rgba(234, 67, 93, 0.1);
+}
+
+.login-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: #EA435D;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+.login-button:hover {
+    background: #c9394f;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(234, 67, 93, 0.3);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: #EA435D;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-height: 20px;
+    margin-top: -0.5rem;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 480px) {
+    .login-box {
+        padding: 2rem 1.5rem;
+    }
+
+    .login-logo {
+        width: 160px;
+    }
+
+    .login-title {
+        font-size: 1.75rem;
+    }
+
+    .login-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .pin-input {
+        padding: 0.875rem 1rem;
+        font-size: 1rem;
+    }
+
+    .login-button {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+    }
+}

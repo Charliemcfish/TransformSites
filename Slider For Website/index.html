@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Figma to Website</title>
+  </head>
+  <body>
+    <!-- ============================================ -->
+    <!--                 Navigation                   -->
+    <!-- ============================================ -->
+
+    <header id="cs-navigation">
+      <div class="cs-container">
+        <!--Nav Logo-->
+        <a href="" class="cs-logo" aria-label="back to home">
+          <img
+            src="assets/logo.png"
+            alt="logo"
+            width="210"
+            height="29"
+            aria-hidden="true"
+            decoding="async"
+          />
+        </a>
+        <!--Navigation List-->
+        <nav class="cs-nav" role="navigation">
+          <!--Mobile Nav Toggle-->
+          <button class="cs-toggle" aria-label="mobile menu toggle">
+            <div class="cs-box" aria-hidden="true">
+              <span class="cs-line cs-line1" aria-hidden="true"></span>
+              <span class="cs-line cs-line2" aria-hidden="true"></span>
+              <span class="cs-line cs-line3" aria-hidden="true"></span>
+            </div>
+          </button>
+          <div class="cs-ul-wrapper">
+            <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
+              <li class="cs-li">
+                <a
+                  href=""
+                  class="cs-li-link cs-active"
+                  style="font-weight: bold; text-decoration: underline"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="cs-li">
+                <a href="" class="cs-li-link"> Nav 1 </a>
+              </li>
+              <li class="cs-li">
+                <a href="" class="cs-li-link"> Nav 2 </a>
+              </li>
+              <li class="cs-li">
+                <a href="" class="cs-li-link"> Nav 3 </a>
+              </li>
+              <li class="cs-li">
+                <a href="" class="cs-li-link"> Nav 4 </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <a href="" class="cs-button-solid cs-nav-button">Contact Us</a>
+      </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!--                    Hero                      -->
+    <!-- ============================================ -->
+
+    <section id="hero-1426">
+      <div class="cs-container">
+        <div class="cs-content">
+          <span class="cs-topper"> Lorem Ipsum</span>
+          <h1 class="cs-title">Hero</h1>
+          <p class="cs-text">Text text text text.</p>
+          <div class="cs-button-group">
+            <a href="" class="cs-button-solid cs-button1">Button</a>
+            <a href="" class="cs-button-solid cs-button2">Button</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background Image -->
+      <picture class="cs-background">
+        <source media="(max-width: 600px)" srcset="assets/hero.png" />
+        <source media="(min-width: 601px)" srcset="assets/hero.png" />
+        <img
+          loading="lazy"
+          decoding="async"
+          src="assets/hero.png"
+          alt="field"
+          width="1920"
+          height="1200"
+          aria-hidden="true"
+        />
+      </picture>
+    </section>
+
+    <br />
+    <br />
+
+    <div id="retainer-price-slider">
+      <div class="slidecontainer">
+        <div class="codepentitle">
+          Drag the slider to choose a Plan that fits your Budget
+        </div>
+        <div id="mfjlabs-title"></div>
+        <br />
+        <div class="mfjlabs-hourly">
+          <div id="hourly-dollars">
+            <span class="dollar-sign">£</span
+            ><span id="mfjlabs-hourly-price">00</span
+            ><span style="font-size: 2rem">/Month</span>
+            <div class="mfjlabs-retainer">
+              <br /><br /><span
+                id="dollar-sign-retainer"
+                class="dollar-sign"
+              ></span
+              ><span id="mfjlabs-retainer-price"></span> <br /><span
+                id="mfjlabs-retainer-hours"
+              ></span>
+            </div>
+          </div>
+          <div id="hourly-call">
+            <span>Get In<br />Touch</span>
+          </div>
+        </div>
+        <input
+          type="range"
+          min="0"
+          max="4"
+          value="2"
+          class="slider"
+          id="sliderVal"
+        />
+
+        <p id="hubspot-price">100+ Reviews on Google</p>
+        <p class="service-level">All plans come with blah, blah and blah.</p>
+      </div>
+      <h5
+        id="serving-community"
+        style="
+          font-size: 1.2em;
+          color: #9ed05f;
+          text-align: center;
+          font-style: italic;
+          font-weight: 900;
+        "
+      >
+        Click to get started with Aztec
+      </h5>
+    </div>
+
+    <br />
+
+    <!-- ============================================ -->
+    <!--                  Services                    -->
+    <!-- ============================================ -->
+
+    <section id="services-942">
+      <div class="cs-container">
+        <!-- Left Content Section-->
+        <div class="cs-content">
+          <span class="cs-topper"></span>
+          <h2 class="cs-title">Our Services</h2>
+          <p class="cs-text">Text.</p>
+        </div>
+        <ul class="cs-card-group">
+          <li class="cs-item">
+            <picture class="cs-icon-wrapper">
+              <img
+                class="cs-icon"
+                loading="lazy"
+                decoding="async"
+                src="assets/cog.png"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </picture>
+            <h3 class="cs-h3">Service 1</h3>
+            <p class="cs-item-text">
+              Text text text text text text text text text text text.
+            </p>
+            <a href="" class="cs-link">Read More</a>
+            <!--Background Image-->
+            <picture class="cs-background">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="assets/servicesbackground.jpg"
+                alt=""
+                width="480"
+                height="425"
+              />
+            </picture>
+          </li>
+          <li class="cs-item">
+            <picture class="cs-icon-wrapper">
+              <img
+                class="cs-icon"
+                loading="lazy"
+                decoding="async"
+                src="assets/cog.png"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </picture>
+            <h3 class="cs-h3">Service 2</h3>
+            <p class="cs-item-text">
+              Text text text text text text text text text text text.
+            </p>
+            <a href="" class="cs-link">Read More</a>
+            <!--Background Image-->
+            <picture class="cs-background">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="assets/servicesbackground.jpg"
+                alt=""
+                width="480"
+                height="425"
+              />
+            </picture>
+          </li>
+          <li class="cs-item">
+            <picture class="cs-icon-wrapper">
+              <img
+                class="cs-icon"
+                loading="lazy"
+                decoding="async"
+                src="assets/cog.png"
+                alt=""
+                width="40"
+                height="40"
+              />
+            </picture>
+            <h3 class="cs-h3">Service 3</h3>
+            <p class="cs-item-text">
+              Text text text text text text text text text text text.
+            </p>
+            <a href="" class="cs-link">Read More</a>
+            <!--Background Image-->
+            <picture class="cs-background">
+              <img
+                loading="lazy"
+                decoding="async"
+                src="assets/servicesbackground.jpg"
+                alt=""
+                width="480"
+                height="425"
+              />
+            </picture>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+      // www.MFrankJohnson.com
+      // Retainer Price Slider CSS
+      // Retainers: 0  | 499 | 799 | 1299
+      //  Included: 0  |   5 |  10 |   20
+      //    Hourly: 99 |  69 |  59 |   49
+      //
+      var slider_val = document.getElementById('sliderVal');
+      var mfjlabs_title = document.getElementById('mfjlabs-title');
+      var mfjlabs_hourly_price = document.getElementById(
+        'mfjlabs-hourly-price'
+      );
+      var dollar_sign_retainer = document.getElementById(
+        'dollar-sign-retainer'
+      );
+      var mfjlabs_retainer_price = document.getElementById(
+        'mfjlabs-retainer-price'
+      );
+      var mfjlabs_retainer_hours = document.getElementById(
+        'mfjlabs-retainer-hours'
+      );
+      var hourly_dollars = document.getElementById('hourly-dollars');
+      var hourly_call = document.getElementById('hourly-call');
+      // Initialize pricing
+      mfjlabs_title.innerHTML = 'Pro<br>Website';
+      hourly_dollars.style.display = 'initial';
+      hourly_call.style.display = 'none';
+      mfjlabs_hourly_price.innerHTML = '150';
+      dollar_sign_retainer.style.display = 'initial';
+      mfjlabs_retainer_price.innerHTML =
+        'Free Hosting <br> Contact Form <br> 1-5 Pages <br> Unlimited Edits <br> SEO Ready to Rank on Google <br>';
+
+      // // mfjlabs_retainer_hours.innerHTML = slider_val.value;
+      // TESTING ONLY
+      mfjlabs_retainer_hours.innerHTML = 'Boost your Business';
+
+      slider_val.oninput = function () {
+        switch (this.value) {
+          case '0':
+            mfjlabs_title.innerHTML = '&nbsp;<br>Standard Website';
+            hourly_dollars.style.display = 'initial';
+            hourly_call.style.display = 'none';
+            mfjlabs_hourly_price.innerHTML = '99';
+            dollar_sign_retainer.style.display = 'none';
+            mfjlabs_retainer_price.innerHTML =
+              'Free Hosting <br> 1-5 Pages <br> 2 Edits Per Month <br> Basic SEO <br>';
+            mfjlabs_retainer_hours.innerHTML =
+              'Affordable plan to improve your website';
+            break;
+          case '1':
+            mfjlabs_title.innerHTML = 'Optional<br>Retainer Pricing';
+            hourly_dollars.style.display = 'initial';
+            hourly_call.style.display = 'none';
+            mfjlabs_hourly_price.innerHTML = '69';
+            dollar_sign_retainer.style.display = 'initial';
+            mfjlabs_retainer_price.innerHTML =
+              '499 Retainer Month&#x2011to&#x2011;Month';
+            mfjlabs_retainer_hours.innerHTML = 'Includes First 5&nbsp;Hours';
+            break;
+          case '2':
+            mfjlabs_title.innerHTML = 'Pro<br>Website';
+            hourly_dollars.style.display = 'initial';
+            hourly_call.style.display = 'none';
+            mfjlabs_hourly_price.innerHTML = '150';
+            dollar_sign_retainer.style.display = 'initial';
+            mfjlabs_retainer_price.innerHTML =
+              'Free Hosting <br> Contact Form <br> 1-5 Pages <br> Unlimited Edits <br> SEO Ready to Rank on Google <br>';
+
+            mfjlabs_retainer_hours.innerHTML = 'Boost Your Business';
+            break;
+          case '3':
+            mfjlabs_title.innerHTML = 'Premium eCommerce<br>Store';
+            hourly_dollars.style.display = 'initial';
+            hourly_call.style.display = 'none';
+            mfjlabs_hourly_price.innerHTML = '£299';
+            dollar_sign_retainer.style.display = 'initial';
+            mfjlabs_retainer_price.innerHTML =
+              'Free Hosting <br> Contact Form and Payment Integration <br> Up to <b>50</b> Products <br> SEO Optimized to boost Traffic and Sales <br> Unlimited Edits <br>';
+            mfjlabs_retainer_hours.innerHTML =
+              'Boost your shops Sales and Traffic';
+            break;
+          case '4':
+            mfjlabs_title.innerHTML =
+              'Need an App, <br> Elite eCommerce Store, <br> Or Large Website?';
+            hourly_dollars.style.display = 'none';
+            hourly_call.style.display = 'initial';
+            mfjlabs_retainer_price.innerHTML =
+              'Free Hosting <br> Contact Form and Payment Integration <br> Up to <b>50</b> Products <br> SEO Optimized to boost Traffic and Sales <br> Unlimited Edits <br>';
+            break;
+          default:
+            // ERROR CONDITION = NO PRICING SHOWN
+            mfjlabs_title.innerHTML = 'No Pricing';
+            hourly_dollars.style.display = 'none';
+            hourly_call.style.display = 'none';
+        }
+        //  mfjlabs_retainer_hours.innerHTML = this.value;
+        //  TESTING ONLY
+      };
+    </script>
+  </body>
+</html>

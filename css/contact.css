@@ -1,0 +1,692 @@
+
+
+
+/*-- -------------------------- -->
+<---          Contact           -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+  #contact-569 {
+      padding: var(--sectionPadding);
+      background-color: #fafbfc;
+      position: relative;
+      z-index: 1;
+  }
+  #contact-569 .cs-container {
+      width: 100%;
+      /* changes to 1064px at desktop */
+      max-width: 34.375rem;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 3rem;
+      padding-top: 6rem;
+  }
+  #contact-569 .cs-left {
+      max-width: 39.375rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+  }
+  #contact-569 .cs-content {
+      /* set text aling to left if content needs to be left aligned */
+      text-align: left;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      /* centers content horizontally, set to flex-start to left align */
+      align-items: flex-start;
+  }
+
+  #contact-569 .cs-form {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+  }
+  #contact-569 .cs-label {
+      /* 14px - 16px */
+      font-size: clamp(0.875rem, 1.5vw, 1rem);
+      width: 100%;
+      color: var(--headerColor);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.25rem;
+  }
+  #contact-569 .cs-input {
+      font-size: 1rem;
+      width: 100%;
+      height: 2.5rem;
+      padding: 0;
+      padding-left: 1.5rem;
+      color: var(--headerColor);
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      /* prevents padding from adding to height and width */
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+  }
+  #contact-569 .cs-input:hover {
+      border-color: var(--secondary);
+  }
+  #contact-569 .cs-input:focus {
+      outline: 1px solid var(--secondary);
+  }
+  #contact-569 .cs-input::placeholder {
+      color: #7d799c;
+      opacity: 0.6;
+      font-size: 0.875rem;
+  }
+  #contact-569 .cs-textarea {
+      /* 120px - 140px */
+      min-height: clamp(7.5rem, 28vw, 8.75rem);
+      padding-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-family: inherit;
+  }
+  #contact-569 .cs-submit {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.5;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      text-align: center;
+      margin: 0;
+      color: white;
+      border: none;
+      width: 100%;
+      background-color: var(--primary);
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+  }
+  #contact-569 .cs-submit:before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      opacity: 1;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: width 0.3s;
+  }
+  #contact-569 .cs-submit:hover {
+      color: #fff;
+      cursor: pointer;
+  }
+  #contact-569 .cs-submit:hover:before {
+      width: 100%;
+  }
+  #contact-569 .cs-right {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      row-gap: 3rem;
+  }
+  #contact-569 .cs-flex {
+      /* resets to 100% at desktop */
+      width: 49%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+  }
+  #contact-569 .cs-header {
+      /* 20px - 25px */
+      font-size: clamp(1.25rem, 5vw, 1.5625rem);
+      line-height: 1.2em;
+      font-weight: 700;
+      margin: 0;
+      color: var(--headerColor);
+      display: block;
+  }
+  #contact-569 .cs-link {
+      /* 14px - 16px */
+      font-size: clamp(0.875rem, 1.4vw, 1rem);
+      line-height: 1.5em;
+      text-decoration: none;
+      margin: 0;
+      color: var(--headerColor);
+      display: block;
+  }
+  #contact-569 .cs-link:hover {
+      text-decoration: underline;
+  }
+  #contact-569 .cs-phone {
+      /* scoot it 8px up to override the 16px gap on the parent and make it 8px */
+      margin-top: -0.5rem;
+  }
+  #contact-569 .cs-social {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      /* 24px - 30px */
+      gap: clamp(1.5rem, 3vw, 1.875rem);
+  }
+  #contact-569 .cs-li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+  #contact-569 .cs-social-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--secondary);
+      border-radius: 50%;
+      transition:
+          background-color 0.3s,
+          transform 0.3s;
+  }
+  #contact-569 .cs-social-link:hover {
+      background-color: var(--secondary);
+      transform: translateY(-0.25rem);
+  }
+  #contact-569 .cs-social-link:hover .cs-icon {
+      /* turn icon white */
+      filter: grayscale(1) brightness(1000%);
+  }
+  #contact-569 .cs-icon {
+      width: auto;
+      height: 0.9375rem;
+  }
+}
+/* Tablet - 650px */
+@media only screen and (min-width: 40.625rem) {
+  #contact-569 .cs-label {
+      width: 48.4%;
+  }
+  #contact-569 .cs-message {
+      width: 100%;
+  }
+}
+/* Small Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+  #contact-569 .cs-container {
+      max-width: 66.5rem;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 7rem;
+  }
+  #contact-569 .cs-left {
+      width: 60%;
+  }
+  #contact-569 .cs-submit {
+      width: 15rem;
+  }
+  #contact-569 .cs-right {
+      width: 19rem;
+      flex-direction: column;
+      /* prevent flexbox from squishing it */
+      flex: none;
+  }
+  #contact-569 .cs-flex {
+      width: 100%;
+  }
+  #contact-569 .cs-social {
+      /* adds an extra 16px + 48px row gap on the parent to make 64px space between */
+      margin-top: 1rem;
+  }
+}
+/* Dark Mode */
+@media only screen and (min-width: 0rem) {
+  body.dark-mode #contact-569 {
+      background-color: var(--dark);
+  }
+  body.dark-mode #contact-569 .cs-topper {
+      color: var(--secondary);
+  }
+  body.dark-mode #contact-569 .cs-title,
+  body.dark-mode #contact-569 .cs-text,
+  body.dark-mode #contact-569 .cs-label,
+  body.dark-mode #contact-569 .cs-link {
+      color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #contact-569 .cs-text {
+      opacity: 0.8;
+  }
+  body.dark-mode #contact-569 .cs-input {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--bodyTextColorWhite);
+      border-color: rgba(255, 255, 255, 0.1);
+  }
+  body.dark-mode #contact-569 .cs-input:hover {
+      border-color: var(--secondary);
+  }
+  body.dark-mode #contact-569 .cs-input::placeholder {
+      color: #fff;
+      opacity: 0.5;
+  }
+  body.dark-mode #contact-569 .cs-header {
+      color: var(--secondary);
+  }
+}
+
+/* ============================================ */
+/*        Contact Page - Impressive Design      */
+/* ============================================ */
+
+#contact-569 {
+    background: linear-gradient(135deg, var(--secondary) 0%, #1a0f2e 50%, #2a1a3d 100%);
+    padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 5vw, 2rem);
+    position: relative;
+    overflow: hidden;
+}
+
+#contact-569::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(234, 67, 93, 0.15), transparent);
+    top: -300px;
+    right: 10%;
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+}
+
+#contact-569::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(234, 67, 93, 0.1), transparent);
+    bottom: -250px;
+    left: 5%;
+    border-radius: 50%;
+    animation: pulse 7s ease-in-out infinite;
+}
+
+#contact-569 .cs-container {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+    padding-top: 6rem;
+}
+
+#contact-569 .cs-topper {
+    color: var(--primary);
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(234, 67, 93, 0.3);
+}
+
+#contact-569 .cs-title {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#contact-569 .cs-text {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+#contact-569 .cs-text strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+#contact-569 .cs-text-cta {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+#contact-569 .cs-label {
+    color: #fff;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+#contact-569 .cs-input,
+#contact-569 .cs-textarea {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    color: #1a0f2e;
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#contact-569 .cs-input:hover,
+#contact-569 .cs-textarea:hover {
+    background: rgba(255, 255, 255, 1);
+    border-bottom-color: rgba(234, 67, 93, 0.5);
+}
+
+#contact-569 .cs-input::placeholder,
+#contact-569 .cs-textarea::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+#contact-569 .cs-input:focus,
+#contact-569 .cs-textarea:focus {
+    border-bottom-color: var(--primary);
+    background: rgba(255, 255, 255, 1);
+    outline: none;
+    box-shadow: 0 4px 15px rgba(234, 67, 93, 0.2);
+}
+
+#contact-569 .cs-submit {
+    background: linear-gradient(135deg, var(--primary) 0%, #c33550 100%);
+    box-shadow: 0 8px 25px rgba(234, 67, 93, 0.4);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    padding: clamp(1rem, 2vw, 1.25rem) clamp(1.5rem, 3vw, 2.5rem);
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+}
+
+#contact-569 .cs-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(234, 67, 93, 0.5);
+}
+
+/* ============================================ */
+/*           Timeline/Process Section           */
+/* ============================================ */
+
+#contact-569 .cs-process {
+    margin: 3rem 0;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#contact-569 .cs-process-title {
+    color: #fff;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+#contact-569 .cs-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#contact-569 .cs-timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+#contact-569 .cs-timeline-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary) 0%, #c33550 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(234, 67, 93, 0.3);
+}
+
+#contact-569 .cs-timeline-content h4 {
+    color: #fff;
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+#contact-569 .cs-timeline-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: clamp(0.9375rem, 2vw, 1rem);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Right Side - Clean & Minimalist */
+#contact-569 .cs-right {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    backdrop-filter: none;
+}
+
+#contact-569 .cs-header {
+    color: #fff;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 1.5rem;
+    display: block;
+    font-weight: 700;
+}
+
+#contact-569 .cs-link,
+#contact-569 .cs-phone {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    transition: all 0.3s ease;
+}
+
+#contact-569 .cs-link:hover,
+#contact-569 .cs-phone:hover {
+    color: var(--primary) !important;
+    transform: translateX(5px);
+}
+
+#contact-569 .cs-flex {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    margin-bottom: 3rem;
+}
+
+#contact-569 .cs-flex:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+/* ============================================ */
+/*         Trust Signals & Contact Info         */
+/* ============================================ */
+
+#contact-569 .cs-trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+#contact-569 .cs-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+#contact-569 .cs-trust-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+#contact-569 .cs-trust-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+#contact-569 .cs-trust-item span {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(0.9375rem, 2vw, 1rem);
+    font-weight: 600;
+}
+
+#contact-569 .cs-contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+#contact-569 .cs-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#contact-569 .cs-contact-item:hover {
+    background: rgba(234, 67, 93, 0.1);
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+#contact-569 .cs-contact-item i {
+    font-size: 1.25rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+#contact-569 .cs-contact-item span {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+}
+
+#contact-569 .cs-response-time {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(0.875rem, 2vw, 0.9375rem);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#contact-569 .cs-response-time i {
+    color: var(--primary);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* Social Icons */
+#contact-569 .cs-social {
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+#contact-569 .cs-social-link {
+    background: rgba(255, 255, 255, 0.08);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+#contact-569 .cs-social-link:hover {
+    background: var(--primary);
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(234, 67, 93, 0.4);
+    border-color: var(--primary);
+}
+
+#contact-569 .cs-social-link .cs-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Mobile Responsive - Enhanced Padding */
+@media (max-width: 768px) {
+    #contact-569 {
+        padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
+    }
+
+    #contact-569 .cs-container {
+        padding: 0 1rem;
+        padding-top: 8rem;
+    }
+
+    #contact-569 .cs-right {
+        padding: 0;
+        margin-top: 3rem;
+    }
+
+    #contact-569 .cs-flex {
+        padding: 0;
+        margin-bottom: 2.5rem;
+        width: 100%;
+    }
+
+    #contact-569 .cs-title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+    }
+
+    #contact-569 .cs-text {
+        font-size: 1rem;
+    }
+
+    #contact-569 .cs-social {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    #contact-569 .cs-process {
+        padding: 1.5rem;
+    }
+
+    #contact-569 .cs-timeline-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    #contact-569 .cs-timeline-item {
+        gap: 1rem;
+    }
+
+    #contact-569 .cs-trust-item,
+    #contact-569 .cs-contact-item {
+        padding: 0.875rem 1rem;
+    }
+
+    #contact-569 .cs-trust-item i {
+        font-size: 1.25rem;
+    }
+}

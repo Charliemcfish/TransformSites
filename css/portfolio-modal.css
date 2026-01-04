@@ -1,0 +1,345 @@
+/* ============================================ */
+/*        Portfolio Modal Case Studies          */
+/*          Professional & Interactive          */
+/* ============================================ */
+
+/* Modal Overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+/* Modal Container */
+.modal-container {
+    background: #fff;
+    max-width: 1000px;
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: var(--secondary);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Modal Header */
+.modal-header {
+    position: relative;
+    height: 300px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+}
+
+.modal-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.modal-title {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    z-index: 1;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Modal Content */
+.modal-content {
+    padding: 3rem;
+}
+
+.modal-section {
+    margin-bottom: 2.5rem;
+}
+
+.modal-section:last-child {
+    margin-bottom: 0;
+}
+
+.modal-section h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-section h3::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.modal-section p {
+    color: var(--bodyTextColor);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* Stats Grid */
+.modal-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.modal-stat {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.modal-stat:hover {
+    transform: translateY(-5px);
+}
+
+.modal-stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.modal-stat-label {
+    display: block;
+    color: var(--bodyTextColor);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Tags */
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.modal-tag {
+    background: var(--secondaryLight);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Testimonial */
+.modal-testimonial {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    margin-top: 2rem;
+    position: relative;
+}
+
+.modal-testimonial::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--primary);
+    opacity: 0.2;
+}
+
+.modal-testimonial-text {
+    font-style: italic;
+    color: var(--headerColor);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.modal-testimonial-author {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.modal-testimonial-role {
+    color: var(--bodyTextColor);
+    font-size: 0.9rem;
+}
+
+/* CTA Button */
+.modal-cta {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(234, 67, 93, 0.3);
+}
+
+.modal-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 67, 93, 0.4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .modal-container {
+        border-radius: 12px;
+        margin: 1rem;
+    }
+
+    .modal-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+        left: 1.5rem;
+        bottom: 1.5rem;
+    }
+
+    .modal-header {
+        height: 200px;
+    }
+
+    .modal-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-section h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Portfolio Grid Enhancements */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.portfolio-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-item-overlay {
+    opacity: 1;
+}
+
+.portfolio-item-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-item-desc {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+}
+
+.portfolio-item-cta {
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: 1rem;
+    display: inline-block;
+}

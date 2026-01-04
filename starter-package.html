@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZN4TPDMWQJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZN4TPDMWQJ');
+</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Launch your professional website for just £99/month with Transform Sites Starter Package. Mobile-responsive design, SEO optimization, hosting & support included. Live in 1-2 weeks!">
+    <meta name="keywords" content="affordable web design, starter website package, small business website, website design £99, professional website design">
+
+    <!--Social Media Display-->
+    <meta property="og:title" content="Starter Website Package - £99/Month | Transform Sites"/>
+    <meta property="og:description" content="Get your professional website online in 1-2 weeks for just £99/month. Everything you need to launch your online presence."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.transformsites.com/starter-package"/>
+    <meta property="og:image" content="/assets/images/social.jpg"/>
+    <meta property="og:image:secure_url" content="/assets/images/social.jpg"/>
+
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/core-styles.css">
+    <link rel="stylesheet" href="css/pricing.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/portfolio-modal.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/dark.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Starter Package - £99/Month | Transform Sites</title>
+
+    <style>
+        /* Hero Section */
+        #hero-starter {
+            padding: 12rem 1rem 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        #hero-starter .cs-background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
+
+        #hero-starter .cs-background:before {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: var(--secondary);
+            opacity: 0.90;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #hero-starter .cs-background video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        #hero-starter .cs-container {
+            width: 100%;
+            max-width: 80rem;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero-starter .cs-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        #hero-starter h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        #hero-starter .cs-hero-price {
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--primary);
+            font-weight: 900;
+            display: block;
+            margin: 1rem 0;
+        }
+
+        #hero-starter .cs-hero-price span {
+            font-size: 0.4em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #hero-starter .cs-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 50rem;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        #hero-starter .cs-button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        #hero-starter .cs-button-solid {
+            padding: 0 2.5rem;
+            font-size: 1.125rem;
+        }
+
+        #hero-starter .cs-button-transparent {
+            font-size: 1rem;
+            line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            margin: 0;
+            color: white;
+            min-width: 9.375rem;
+            padding: 0 2rem;
+            border: 2px solid white;
+            border-radius: 0.25rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        #hero-starter .cs-button-transparent:hover {
+            background: white;
+            color: var(--secondary);
+        }
+
+        #hero-starter .cs-trust-bar {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        #hero-starter .cs-trust-item {
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        #hero-starter .cs-trust-item i {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        /* Problem/Solution Section */
+        #problem-solution {
+            padding: var(--sectionPadding);
+           
+        }
+
+        #problem-solution .cs-container {
+            width: 100%;
+            max-width: 80rem;
+            margin: auto;
+        }
+
+        .problem-box {
+            background: white;
+            padding: 2.5rem;
+            border-left: 4px solid #ff6b6b;
+            margin-bottom: 3rem;
+          
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .problem-box .problem-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .problem-box .problem-image {
+            flex: 0 0 300px;
+            max-width: 300px;
+        }
+
+        .problem-box .problem-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .problem-box h2 {
+            color: #ff6b6b;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .problem-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--bodyTextColor);
+        }
+
+        .problem-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .solution-section {
+            background: var(--secondary);
+            padding: var(--sectionPadding);
+            margin-top: 3rem;
+        }
+
+        .solution-box {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 2.5rem;
+            color: white;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .solution-box .solution-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .solution-box .solution-image {
+            flex: 0 0 300px;
+            max-width: 300px;
+        }
+
+        .solution-box .solution-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .solution-box h2 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-box .solution-intro {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .solution-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: white;
+        }
+
+        .solution-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .problem-box, .solution-box {
+                flex-direction: column-reverse;
+            }
+
+            .problem-box .problem-image,
+            .solution-box .solution-image {
+                flex: 1;
+                max-width: 100%;
+            }
+        }
+
+        /* Features Grid */
+        #features-detail {
+            padding: var(--sectionPadding);
+        }
+
+        #features-detail .cs-container {
+            width: 100%;
+            max-width: 80rem;
+            margin: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(234, 67, 93, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--headerColor);
+        }
+
+        .feature-card p {
+            color: var(--bodyTextColor);
+            line-height: 1.6;
+        }
+
+        .feature-card .benefit-tag {
+            display: inline-block;
+            background: #f0f9ff;
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Value Proposition */
+        #value-prop {
+            padding: var(--sectionPadding);
+            background: linear-gradient(135deg, var(--secondary) 0%, #2a1a3d 100%);
+            color: white;
+        }
+
+        #value-prop .cs-container {
+            width: 100%;
+            max-width: 80rem;
+            margin: auto;
+            text-align: center;
+        }
+
+        #value-prop .cs-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        #value-prop .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        #value-prop .value-item {
+            padding: 2rem;
+        }
+
+        #value-prop .value-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        #value-prop .value-label {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Comparison Table */
+        #comparison {
+            padding: var(--sectionPadding);
+            background: #fafbfc;
+        }
+
+        #comparison .cs-container {
+            width: 100%;
+            max-width: 80rem;
+            margin: auto;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-top: 3rem;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-header {
+            background: var(--secondary);
+            color: white;
+            font-weight: 700;
+        }
+
+        .comparison-cell {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .comparison-cell:first-child {
+            justify-content: flex-start;
+            font-weight: 600;
+        }
+
+        .comparison-highlight {
+            background: var(--primary);
+            color: white;
+        }
+
+        .comparison-highlight.comparison-cell:first-child {
+            color: white;
+        }
+
+        .comparison-check {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .comparison-highlight .comparison-check {
+            color: white;
+        }
+
+        .comparison-cross {
+            color: #ccc;
+            font-size: 1.5rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-cell {
+                justify-content: flex-start;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .comparison-cell:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FAQ Active State Fix */
+        #faq-1237 .cs-faq-item.active .cs-button-text {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" aria-label="skip to main content" href="#main">Click To Skip To Main Content</a>
+
+    <!-- Navigation -->
+    <header id="cs-navigation">
+    <div class="cs-top-bar">
+        <div class="cs-top-container">
+            <div class="cs-top-contact">
+                <a href="sms:+447783548531" class="cs-top-link">
+                    <img class="cs-link-icon" src="assets/images/phone.svg" alt="logo" width="16" height="16" aria-hidden="true" decoding="async">
+                    Text Us: 07783 548531
+                </a>
+                <a href="mailto:info@transformsites.com" class="cs-top-link">
+                    <img class="cs-link-icon" src="assets/images/email.svg" alt="logo" width="20" height="20" aria-hidden="true" decoding="async">
+                    Email Us: info@transformsites.com
+                </a>
+            </div>
+            <div class="cs-top-social">
+                <a href="https://www.facebook.com/profile.php?id=61559077598115" class="cs-social-link">
+                    <img class="cs-social-icon" src="assets/images/fb.svg" alt="logo" width="12" height="12" aria-hidden="true" decoding="async">
+                </a>
+                <a href="https://www.linkedin.com/company/transformsites/" class="cs-social-link">
+                    <img class="cs-social-icon" src="assets/images/linkedin.svg" alt="logo" width="12" height="12" aria-hidden="true" decoding="async">
+                </a>
+                <a href="https://www.instagram.com/transform_sites/" class="cs-social-link">
+                    <img class="cs-social-icon" src="assets/images/instagram.svg" alt="logo" width="12" height="12" aria-hidden="true" decoding="async">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="cs-container">
+        <a href="/index" class="cs-logo" aria-label="back to home">
+            <img src="assets/images/logo.png" alt="logo" width="197" height="43" aria-hidden="true" decoding="async">
+        </a>
+        <nav class="cs-nav" role="navigation">
+            <button class="cs-toggle" aria-label="mobile menu toggle">
+                <div class="cs-box" aria-hidden="true">
+                    <span class="cs-line cs-line1" aria-hidden="true"></span>
+                    <span class="cs-line cs-line2" aria-hidden="true"></span>
+                    <span class="cs-line cs-line3" aria-hidden="true"></span>
+                </div>
+            </button>
+            <div class="cs-ul-wrapper">
+                <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
+                    <li class="cs-li">
+                        <a href="/about" class="cs-li-link">About</a>
+                    </li>
+                    <li class="cs-li cs-dropdown" tabindex="0">
+                        <span class="cs-li-link">
+                            What We Do
+                            <img class="cs-drop-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/chev-down.svg" alt="dropdown icon" width="15" height="15" decoding="async" aria-hidden="true">
+                        </span>
+                        <ul class="cs-drop-ul">
+                            <li class="cs-drop-li">
+                                <a href="/web-design" class="cs-li-link cs-drop-link">Web Design</a>
+                            </li>
+                            <li class="cs-drop-li">
+                                <a href="/graphic-design" class="cs-li-link cs-drop-link">Graphic Design</a>
+                            </li>
+                            <li class="cs-drop-li">
+                                <a href="/seo" class="cs-li-link cs-drop-link">Get Seen On Google (SEO)</a>
+                            </li>
+                            <li class="cs-drop-li">
+                                <a href="/website-hosting" class="cs-li-link cs-drop-link">Website Hosting</a>
+                            </li>
+                            <li class="cs-drop-li">
+                                <a href="/ecommerce-websites" class="cs-li-link cs-drop-link">eCommerce Websites</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="cs-li">
+                        <a href="/portfolio" class="cs-li-link">Our Work</a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="/pricing" class="cs-li-link">Pricing</a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="/contact" class="cs-li-link">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <a href="websitedesign" class="cs-button-solid cs-nav-button"></a>
+    </div>
+</header>
+
+    <main id="main">
+        <!-- Hero Section -->
+        <section id="hero-starter">
+            <div class="cs-container">
+                <span class="cs-badge">Perfect For Small Businesses</span>
+                <h1>Launch Your Professional Website in Just 1-2 Weeks</h1>
+                <span class="cs-hero-price">£99<span>/month</span></span>
+                <p class="cs-subtitle">
+                    Everything your small business needs to establish a powerful online presence. No upfront costs, no technical headaches, no hidden fees - just a beautiful website that works.
+                </p>
+                <div class="cs-button-group">
+                    <a href="#contact-form" class="cs-button-solid">Get Started Now</a>
+                    <a href="#features-detail" class="cs-button-transparent">See What's Included</a>
+                </div>
+                <div class="cs-trust-bar">
+                    <div class="cs-trust-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>No Setup Fees</span>
+                    </div>
+                    <div class="cs-trust-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Cancel Anytime</span>
+                    </div>
+                    <div class="cs-trust-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>1-2 Week Delivery</span>
+                    </div>
+                    <div class="cs-trust-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Background Video -->
+            <picture class="cs-background">
+                <video autoplay muted loop playsinline class="cs-background">
+                    <source src="assets/images/hero.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </picture>
+        </section>
+
+        <!-- Problem/Solution Section -->
+        <section id="problem-solution">
+            <div class="cs-container">
+                <div class="problem-box">
+                    <div class="problem-content">
+                        <h2><i class="fa-solid fa-triangle-exclamation"></i> Sound Familiar?</h2>
+                        <p>You're a small business owner who knows you need a website, but...</p>
+                        <ul class="problem-list">
+                            <li>Website design quotes are £3,000 - £10,000+ upfront and way out of budget</li>
+                            <li>DIY website builders are confusing and your site looks unprofessional</li>
+                            <li>You don't have time to learn web design AND run your business</li>
+                            <li>You're losing customers to competitors who show up on Google</li>
+                            <li>You can't afford to hire a full-time developer or marketing team</li>
+                            <li>Your current website is outdated, slow, and doesn't work on mobile</li>
+                        </ul>
+                        <p><strong>You're not alone. This is exactly why we created the Starter Package.</strong></p>
+                    </div>
+                    <div class="problem-image">
+                        <img src="assets/images/problem.gif" alt="Common website problems" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution-section">
+            <div class="solution-box">
+                <div class="solution-content">
+                    <h2><i class="fa-solid fa-lightbulb"></i> The Solution: Affordable Excellence</h2>
+                    <p class="solution-intro">Get everything you need to compete online - without breaking the bank:</p>
+                    <ul class="solution-list">
+                        <li>Professional website design for just £99/month - no huge upfront investment</li>
+                        <li>Beautiful, mobile-responsive design that looks better than your competitors</li>
+                        <li>We handle everything - you focus on running your business</li>
+                        <li>Built-in SEO so customers can actually find you on Google</li>
+                        <li>Expert support whenever you need changes or help</li>
+                        <li>Fast, modern website that works flawlessly on all devices</li>
+                        <li>Go live in just 1-2 weeks, not months</li>
+                    </ul>
+                </div>
+                <div class="solution-image">
+                    <img src="assets/images/homepricing.gif" alt="Affordable pricing solution" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section id="value-prop">
+            <div class="cs-container">
+                <div class="cs-content">
+                    <span class="cs-topper">Real Results</span>
+                    <h2 class="cs-title" style="color: white;">Why Small Businesses Choose Our Starter Package</h2>
+                </div>
+                <div class="value-grid">
+                    <div class="value-item">
+                        <span class="value-number">£99</span>
+                        <span class="value-label">Per Month vs £5,000+ Upfront</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">1-2</span>
+                        <span class="value-label">Weeks to Launch</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">100%</span>
+                        <span class="value-label">Mobile Responsive</span>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-number">24/7</span>
+                        <span class="value-label">Secure Hosting Included</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Detail Section -->
+        <section id="features-detail">
+            <div class="cs-container">
+                <div class="cs-content" style="text-align: center; margin-bottom: 2rem;">
+                    <span class="cs-topper">Everything You Need</span>
+                    <h2 class="cs-title" style="margin: 0 auto;">What's Included in Your Starter Package</h2>
+                    <p class="cs-text" style="margin: 1rem auto;">
+                        No hidden fees. No surprises. Just everything you need to succeed online.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-palette"></i>
+                        <h3>Custom Professional Design</h3>
+                        <p>
+                            We don't use templates. Every website is custom-designed to reflect your unique brand personality and make a powerful first impression. Your business deserves to stand out, not blend in.
+                        </p>
+                        <span class="benefit-tag">Builds Trust</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>Fully Mobile Responsive</h3>
+                        <p>
+                            Over 60% of web traffic comes from mobile devices. Your website will look perfect and function flawlessly on smartphones, tablets, and desktops. No compromises.
+                        </p>
+                        <span class="benefit-tag">Reaches More Customers</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <h3>SEO Foundation Package</h3>
+                        <p>
+                            We optimize your website for Google from day one. Strategic keyword research, meta tags, fast loading speeds, and technical SEO setup so customers can actually find you online.
+                        </p>
+                        <span class="benefit-tag">Get Found on Google</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <i class="fa-solid fa-server"></i>
+                        <h3>Lightning-Fast Hosting</h3>
+                        <p>
+                            Your website is hosted on premium servers with 99.9% uptime guarantee, SSL security certificate, automatic daily backups, and enterprise-level protection. Sleep easy knowing your site is safe.
+                        </p>
+                        <span class="benefit-tag">Always Online</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <i class="fa-solid fa-headset"></i>
+                        <h3>1 Hour Monthly Support</h3>
+                        <p>
+                            Need to update your services? Add new photos? Change your contact info? We've got you covered with dedicated monthly support to keep your website fresh and up-to-date.
+                        </p>
+                        <span class="benefit-tag">Stay Current</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <i class="fa-solid fa-rocket"></i>
+                        <h3>Fast 1-2 Week Launch</h3>
+                        <p>
+                            We know you need to get online quickly. Our streamlined process means your professional website goes live in just 1-2 weeks, not the months other agencies take.
+                        </p>
+                        <span class="benefit-tag">Start Fast</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section id="comparison">
+            <div class="cs-container">
+                <div class="cs-content" style="text-align: center; margin-bottom: 2rem;">
+                    <span class="cs-topper">See The Difference</span>
+                    <h2 class="cs-title" style="margin: 0 auto;">Our Starter Package vs DIY</h2>
+                </div>
+
+                <div class="comparison-table">
+                    <div class="comparison-row comparison-header">
+                        <div class="comparison-cell">Feature</div>
+                        <div class="comparison-cell">DIY Builder</div>
+                        <div class="comparison-cell comparison-highlight">Starter Package</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Professional Design</div>
+                        <div class="comparison-cell"><i class="fa-solid fa-xmark comparison-cross"></i></div>
+                        <div class="comparison-cell comparison-highlight"><i class="fa-solid fa-check comparison-check"></i></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Mobile Responsive</div>
+                        <div class="comparison-cell"><i class="fa-solid fa-check comparison-check"></i></div>
+                        <div class="comparison-cell comparison-highlight"><i class="fa-solid fa-check comparison-check"></i></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">SEO Optimization</div>
+                        <div class="comparison-cell"><i class="fa-solid fa-xmark comparison-cross"></i></div>
+                        <div class="comparison-cell comparison-highlight"><i class="fa-solid fa-check comparison-check"></i></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Expert Support</div>
+                        <div class="comparison-cell"><i class="fa-solid fa-xmark comparison-cross"></i></div>
+                        <div class="comparison-cell comparison-highlight"><i class="fa-solid fa-check comparison-check"></i></div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Premium Hosting</div>
+                        <div class="comparison-cell">Extra Cost</div>
+                        <div class="comparison-cell comparison-highlight"><i class="fa-solid fa-check comparison-check"></i> Included</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Your Time Investment</div>
+                        <div class="comparison-cell">40+ Hours</div>
+                        <div class="comparison-cell comparison-highlight">Zero - We Do It All</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Monthly Cost</div>
+                        <div class="comparison-cell">£10-30</div>
+                        <div class="comparison-cell comparison-highlight">£99</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">Upfront Cost</div>
+                        <div class="comparison-cell">£0</div>
+                        <div class="comparison-cell comparison-highlight">£0</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Showcase -->
+        <section id="pricing-357">
+            <div class="cs-container">
+                <div class="cs-content">
+                    <span class="cs-topper">Simple, Transparent Pricing</span>
+                    <h2 class="cs-title">Everything You Need for Just £99/Month</h2>
+                    <p class="cs-text">
+                        No contracts. No hidden fees. Cancel anytime. Start transforming your business today.
+                    </p>
+                </div>
+                <ul class="cs-card-group" style="justify-content: center;">
+                    <li class="cs-item cs-popular" style="max-width: 35rem;">
+                        <h3 class="cs-h3">Starter Package</h3>
+                        <p class="cs-item-text">
+                            Perfect for small businesses launching their online presence
+                        </p>
+                        <div class="cs-option-group">
+                            <span class="cs-price">£99<span class="cs-small">/month</span></span>
+                        </div>
+                        <span class="cs-included">Build your online presence affordably:</span>
+                        <ul class="cs-ul">
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">Custom Professional Website</strong>
+                                    <span class="cs-li-desc">Beautiful, brand-focused design that makes a powerful first impression and converts visitors into customers</span>
+                                </div>
+                            </li>
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">Fully Mobile Responsive</strong>
+                                    <span class="cs-li-desc">Flawless performance on every device - desktop, tablet, and mobile. Your site looks perfect everywhere</span>
+                                </div>
+                            </li>
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">SEO Foundation Package</strong>
+                                    <span class="cs-li-desc">Get discovered on Google with strategic keyword optimization and technical SEO setup</span>
+                                </div>
+                            </li>
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-server"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">Secure Hosting Included</strong>
+                                    <span class="cs-li-desc">Lightning-fast servers with 99.9% uptime, SSL security, and automatic daily backups</span>
+                                </div>
+                            </li>
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">1 Hour Monthly Support</strong>
+                                    <span class="cs-li-desc">Regular updates, content changes, and technical assistance to keep your site fresh</span>
+                                </div>
+                            </li>
+                            <li class="cs-li">
+                                <div class="pricing-icon">
+                                    <i class="fa-solid fa-rocket"></i>
+                                </div>
+                                <div class="cs-li-content">
+                                    <strong class="cs-li-title">1-2 Week Launch</strong>
+                                    <span class="cs-li-desc">Go live fast! Your professional website delivered in just 1-2 weeks, not months</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#contact-form" class="cs-button-solid">Start Your Transformation</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="gallery-45" style="padding: var(--sectionPadding); background: #fafbfc;">
+            <div class="cs-container" style="max-width: 80rem; margin: auto;">
+                <div class="cs-content" style="text-align: center; margin-bottom: 3rem; display: flex; flex-direction: column; align-items: center;">
+                    <span class="cs-topper">See Our Work</span>
+                    <h2 class="cs-title" style="margin: 0 auto;">Succesfully launched over 100+ Websites</h2>
+                    <p class="cs-text" style="margin: 0 auto;">
+                        Check out some of our recent client successes. Click any project to view the full case study.
+                    </p>
+                </div>
+                <ul class="cs-image-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2rem; list-style: none; padding: 0;">
+                    <!-- MyThirdPlace -->
+                    <li class="cs-item" style="aspect-ratio: 1; position: relative;">
+                        <a href="#" data-case-study="mythirdplace" class="portfolio-item card-hover" style="display: block; position: relative; height: 100%;">
+                            <picture class="cs-picture" style="display: block; position: relative; width: 100%; height: 100%;">
+                                <img loading="lazy" decoding="async" src="assets/images/mythirdplaceportfolio.webp" alt="MyThirdPlace Case Study" width="346" height="346" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.25);">
+                            </picture>
+                            <div class="portfolio-item-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(84, 45, 109, 0.9); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 1rem;">
+                                <h3 class="portfolio-item-title" style="font-size: 1.25rem; margin-bottom: 0.5rem; transition: color 0.3s;">MyThirdPlace</h3>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">React Native Platform</p>
+                                <span style="font-size: 0.875rem; font-weight: 700;">View Case Study →</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Monumental -->
+                    <li class="cs-item" style="aspect-ratio: 1; position: relative;">
+                        <a href="#" data-case-study="monumental" class="portfolio-item card-hover" style="display: block; position: relative; height: 100%;">
+                            <picture class="cs-picture" style="display: block; position: relative; width: 100%; height: 100%;">
+                                <img loading="lazy" decoding="async" src="assets/images/monumentalportfolio.webp" alt="Monumental Case Study" width="346" height="346" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.25);">
+                            </picture>
+                            <div class="portfolio-item-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(84, 45, 109, 0.9); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 1rem;">
+                                <h3 class="portfolio-item-title" style="font-size: 1.25rem; margin-bottom: 0.5rem; transition: color 0.3s;">Monumental</h3>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Complete Rebrand</p>
+                                <span style="font-size: 0.875rem; font-weight: 700;">View Case Study →</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- SuperClean -->
+                    <li class="cs-item" style="aspect-ratio: 1; position: relative;">
+                        <a href="#" data-case-study="superclean" class="portfolio-item card-hover" style="display: block; position: relative; height: 100%;">
+                            <picture class="cs-picture" style="display: block; position: relative; width: 100%; height: 100%;">
+                                <img aria-hidden="true" loading="lazy" decoding="async" src="assets/images/supercleanportfolio.webp" alt="SuperClean Case Study" width="346" height="346" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.25);">
+                            </picture>
+                            <div class="portfolio-item-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(84, 45, 109, 0.9); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 1rem;">
+                                <h3 class="portfolio-item-title" style="font-size: 1.25rem; margin-bottom: 0.5rem; transition: color 0.3s;">SuperClean Car Wash</h3>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">App Integration</p>
+                                <span style="font-size: 0.875rem; font-weight: 700;">View Case Study →</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Charles Stoughton -->
+                    <li class="cs-item" style="aspect-ratio: 1; position: relative;">
+                        <a href="#" data-case-study="charles" class="portfolio-item card-hover" style="display: block; position: relative; height: 100%;">
+                            <picture class="cs-picture" style="display: block; position: relative; width: 100%; height: 100%;">
+                                <img aria-hidden="true" loading="lazy" decoding="async" src="assets/images/charlesportfolio.webp" alt="Charles Stoughton Case Study" width="346" height="346" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.25);">
+                            </picture>
+                            <div class="portfolio-item-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(84, 45, 109, 0.9); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 1rem;">
+                                <h3 class="portfolio-item-title" style="font-size: 1.25rem; margin-bottom: 0.5rem; transition: color 0.3s;">Charles Stoughton Apartments</h3>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Premium Design</p>
+                                <span style="font-size: 0.875rem; font-weight: 700;">View Case Study →</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div style="text-align: center;">
+                    <a href="/portfolio" class="cs-button-solid">View All Work</a>
+                </div>
+            </div>
+        </section>
+        <style>
+            .portfolio-item:hover .portfolio-item-overlay {
+                opacity: 1 !important;
+            }
+            .portfolio-item:hover .portfolio-item-title {
+                color: var(--primary) !important;
+            }
+
+            /* Responsive Grid */
+            @media only screen and (min-width: 64rem) {
+                #gallery-45 .cs-image-group {
+                    grid-template-columns: repeat(4, 1fr) !important;
+                }
+            }
+
+            @media only screen and (max-width: 48rem) {
+                #gallery-45 .cs-image-group {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        </style>
+
+        <!-- FAQ Section -->
+        <section id="faq-1237">
+            <div class="cs-container">
+                <div class="cs-content">
+                    <span class="cs-topper">Got Questions?</span>
+                    <h2 class="cs-title">Starter Package FAQ</h2>
+                </div>
+                <div class="cs-wrapper">
+                    <ul class="cs-faq-group">
+                        <li class="cs-faq-item active">
+                            <button class="cs-button">
+                                <span class="cs-number">1</span>
+                                <h3 class="cs-button-text">
+                                    Is there a setup fee or upfront cost?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                No! The Starter Package is just £99/month with zero upfront costs. No setup fees, no hidden charges - just straightforward, affordable pricing that works for small businesses.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">2</span>
+                                <h3 class="cs-button-text">
+                                    How long does it take to build my website?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                We deliver your professional website in just 1-2 weeks. We work efficiently without compromising on quality, so you can start attracting customers quickly.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">3</span>
+                                <h3 class="cs-button-text">
+                                    Can I cancel anytime?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Absolutely! There are no long-term contracts. You can cancel your subscription at any time with 30 days notice. We believe in earning your business every month.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">4</span>
+                                <h3 class="cs-button-text">
+                                    What happens if I need changes to my website?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Your package includes 1 hour of monthly support for updates and changes. Need to update text, add new images, or tweak your services? We've got you covered. Additional support hours can be purchased if needed.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">5</span>
+                                <h3 class="cs-button-text">
+                                    Will my website work on mobile phones?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Yes! Every Starter Package website is fully mobile-responsive, meaning it automatically adapts to look perfect on smartphones, tablets, and desktop computers. Over 60% of web traffic is mobile, so this is essential.
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="cs-faq-group">
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">6</span>
+                                <h3 class="cs-button-text">
+                                    Is hosting and security included?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Yes! Premium hosting, SSL security certificate, automatic backups, and 99.9% uptime are all included in your £99/month. No extra costs to worry about.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">7</span>
+                                <h3 class="cs-button-text">
+                                    Will my website be found on Google?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Yes! Every website includes our SEO Foundation Package with keyword optimization, meta tags, fast loading speeds, and technical setup to help you rank on Google. SEO takes time, but we give you the best foundation to start getting found online.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">8</span>
+                                <h3 class="cs-button-text">
+                                    Do I own the website?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                You own all the content (text, images, logos). The website is hosted and maintained by us as part of your monthly subscription. If you cancel, you can export your content and we can discuss transfer options.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">9</span>
+                                <h3 class="cs-button-text">
+                                    Can I upgrade to a bigger package later?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Absolutely! You can upgrade to our Growth (£149/month) or Pro (£199/month) packages at any time as your business grows. We'll help you transition smoothly.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-number">10</span>
+                                <h3 class="cs-button-text">
+                                    What if I'm not tech-savvy?
+                                </h3>
+                            </button>
+                            <p class="cs-item-p">
+                                Perfect! That's exactly who this package is for. We handle all the technical work - you just provide your business info and brand preferences. We make it incredibly simple.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact-569">
+            <div class="cs-container">
+                <div class="cs-left">
+                    <div class="cs-content" id="contact-form">
+                        <span class="cs-topper">Ready to Get Started?</span>
+                        <h2 class="cs-title">Launch Your Website for Just £99/Month</h2>
+                        <p class="cs-text cs-text-cta">
+                            <strong>Join 100+ businesses</strong> that transformed their online presence with Transform Sites. Fill out the form below and we'll get back to you within 24 hours with next steps.
+                        </p>
+                    </div>
+                    <form class="cs-form" id="cs-form-569" name="Starter Package Contact" method="post" action="formsubmitted.html" netlify>
+                        <input type="hidden" name="package" value="Starter Package - £99/month">
+                        <label class="cs-label">
+                            Name
+                            <input class="cs-input" required type="text" id="name-569" name="name" placeholder="Your Name">
+                        </label>
+                        <label class="cs-label">
+                            Phone
+                            <input class="cs-input" required type="text" id="phone-569" name="phone" placeholder="Your Phone Number">
+                        </label>
+                        <label class="cs-label">
+                            Email
+                            <input class="cs-input" required type="email" id="email-569" name="email" placeholder="Your Email">
+                        </label>
+                        <label class="cs-label">
+                            Business Name
+                            <input class="cs-input" required type="text" id="business-569" name="business" placeholder="Your Business Name">
+                        </label>
+                        <label class="cs-label cs-message">
+                            Tell us about your business
+                            <textarea class="cs-input cs-textarea" required name="Message" id="message-569" placeholder="What does your business do? What are your goals for your website?"></textarea>
+                        </label>
+                        <button class="cs-submit" type="submit">Get Started with Starter Package</button>
+                    </form>
+                </div>
+                <div class="cs-right">
+                    <div class="cs-flex cs-trust-section">
+                        <span class="cs-header">Why Choose Transform Sites?</span>
+                        <div class="cs-trust-grid">
+                            <div class="cs-trust-item">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>100+ Websites Delivered</span>
+                            </div>
+                            <div class="cs-trust-item">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <span>Average 300% Traffic Increase</span>
+                            </div>
+                            <div class="cs-trust-item">
+                                <i class="fa-solid fa-bolt"></i>
+                                <span>1-2 Week Turnaround</span>
+                            </div>
+                            <div class="cs-trust-item">
+                                <i class="fa-solid fa-star"></i>
+                                <span>99.9% Client Satisfaction</span>
+                            </div>
+                            <div class="cs-trust-item">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>No Hidden Fees</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cs-flex cs-contact-section">
+                        <span class="cs-header">Prefer to Talk? Call Us</span>
+                        <div class="cs-contact-methods">
+                            <a href="mailto:info@transformsites.com" class="cs-contact-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>info@transformsites.com</span>
+                            </a>
+                            <a href="tel:07783548531" class="cs-contact-item">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>07783 548531</span>
+                            </a>
+                        </div>
+                        <p class="cs-response-time">
+                            <i class="fa-solid fa-clock"></i>
+                            We respond to all enquiries within 24 hours, usually much faster!
+                        </p>
+                    </div>
+                    <ul class="cs-social">
+                        <li class="cs-li">
+                            <a class="cs-social-link" href="https://www.facebook.com/profile.php?id=61559077598115" aria-label="visit facebook">
+                                <img class="cs-icon" src="assets/images/fb.svg" alt="icon" width="10" height="15" decoding="async" aria-hidden="true">
+                            </a>
+                        </li>
+                        <li class="cs-li">
+                            <a class="cs-social-link" href="https://www.linkedin.com/company/transformsites/" aria-label="visit linkedin">
+                                <img class="cs-icon" src="assets/images/linkedin.svg" alt="icon" width="16" height="15" decoding="async" aria-hidden="true">
+                            </a>
+                        </li>
+                        <li class="cs-li">
+                            <a class="cs-social-link" href="https://www.instagram.com/transform_sites/" aria-label="visit instagram">
+                                <img class="cs-icon" src="assets/images/instagram.svg" alt="icon" width="21" height="15" decoding="async" aria-hidden="true">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="cs-footer-269">
+        <div class="cs-container">
+            <div class="cs-logo-group">
+                <a aria-label="go back to home" class="cs-logo" href="">
+                    <img class="cs-logo-img" aria-hidden="true" loading="lazy" decoding="async" src="assets/images/logo.png" alt="logo" width="240" height="32">
+                </a>
+                <p class="cs-text">
+                    Crafting captivating websites and driving online growth, TransformSites is your partner in digital transformation.
+                </p>
+            </div>
+            <ul class="cs-nav">
+                <li class="cs-nav-li">
+                    <span class="cs-header">Sitemap</span>
+                </li>
+                <li class="cs-nav-li">
+                    <a class="cs-nav-link" href="index.html">Home</a>
+                </li>
+                <li class="cs-nav-li">
+                    <a class="cs-nav-link" href="about.html">What We Do</a>
+                </li>
+                <li class="cs-nav-li">
+                    <a class="cs-nav-link" href="portfolio.html">Our Work</a>
+                </li>
+                <li class="cs-nav-li">
+                    <a class="cs-nav-link" href="pricing.html">Pricing</a>
+                </li>
+                <li class="cs-nav-li">
+                    <a class="cs-nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <ul class="cs-contact">
+                <li class="cs-nav-li">
+                    <span class="cs-header">Contact</span>
+                </li>
+                <li class="cs-contact-li">
+                    <a class="cs-contact-link" href="tel:07783548531">07783 548531</a>
+                </li>
+                <li class="cs-contact-li">
+                    <a class="cs-contact-link" href="mailto:info@transformsites.com">info@transformsites.com</a>
+                </li>
+                <li class="cs-contact-li cs-social-group">
+                    <div class="cs-social">
+                        <a class="cs-social-link" aria-label="visit linkedin profile" href="https://www.linkedin.com/company/transformsites/">
+                            <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="assets/images/linkedin.svg" alt="linkedin" width="11" height="11">
+                        </a>
+                        <a class="cs-social-link" aria-label="visit facebook profile" href="https://www.facebook.com/profile.php?id=61559077598115">
+                            <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="assets/images/fb.svg" alt="facebook" width="6" height="11">
+                        </a>
+                        <a class="cs-social-link" aria-label="visit instagram profile" href="https://www.instagram.com/transform_sites/">
+                            <img class="cs-social-img" aria-hidden="true" loading="lazy" decoding="async" src="assets/images/instagram.svg" alt="instagram" width="11" height="11">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script defer src="assets/js/nav.js"></script>
+    <script defer src="assets/js/animations.js"></script>
+    <script defer src="assets/js/portfolio-modal.js"></script>
+    <script>
+       
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
