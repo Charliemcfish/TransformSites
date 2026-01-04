@@ -67,6 +67,9 @@ function renderProspectsPage() {
             <button class="tab" onclick="switchProspectTab('active')">
                 <i class="fas fa-users"></i> Active Prospects
             </button>
+            <button class="tab" onclick="switchProspectTab('archived')">
+                <i class="fas fa-archive"></i> Archived
+            </button>
             <button class="tab" onclick="switchProspectTab('converted')">
                 <i class="fas fa-trophy"></i> Converted
             </button>
@@ -182,6 +185,8 @@ function displayProspects() {
             message = 'No new prospects yet. Click "Add Prospect" to start building your pipeline!';
         } else if (currentProspectTab === 'active') {
             message = 'No active prospects. Contact some new prospects to move them here.';
+        } else if (currentProspectTab === 'archived') {
+            message = 'No archived prospects. Prospects move here after 3 contact attempts.';
         } else if (currentProspectTab === 'converted') {
             message = 'No converted prospects yet. Keep hustling, Charlie!';
         }
@@ -194,6 +199,19 @@ function displayProspects() {
         return;
     }
 
+    // Helper function to get border color based on last contact date
+    const getBorderColor = (lastContactedAt) => {
+        if (!lastContactedAt) return '#28a745'; // Green if just contacted
+
+        const now = new Date();
+        const lastContact = lastContactedAt.toDate ? lastContactedAt.toDate() : new Date(lastContactedAt);
+        const daysSinceContact = Math.floor((now - lastContact) / (1000 * 60 * 60 * 24));
+
+        if (daysSinceContact <= 7) return '#28a745'; // Green
+        if (daysSinceContact <= 14) return '#ff9800'; // Orange
+        return '#dc3545'; // Red
+    };
+
     const tableHTML = `
         <table class="data-table">
             <thead>
@@ -204,12 +222,17 @@ function displayProspects() {
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Website</th>
+                    ${currentProspectTab === 'active' ? '<th width="120">Contacted</th>' : ''}
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                ${filteredProspects.map(prospect => `
-                    <tr>
+                ${filteredProspects.map(prospect => {
+                    const contactCount = prospect.contactCount || 1;
+                    const borderColor = currentProspectTab === 'active' ? getBorderColor(prospect.lastContactedAt) : 'transparent';
+
+                    return `
+                    <tr style="border-left: 4px solid ${borderColor};">
                         ${currentProspectTab === 'new' ? `
                             <td>
                                 <input type="checkbox" class="prospect-checkbox" onchange="markAsContacted('${prospect.id}')" style="width: 20px; height: 20px; cursor: pointer;">
@@ -220,6 +243,16 @@ function displayProspects() {
                         <td><a href="tel:${escapeHtml(prospect.phone)}">${escapeHtml(prospect.phone)}</a></td>
                         <td><a href="mailto:${escapeHtml(prospect.email)}">${escapeHtml(prospect.email)}</a></td>
                         <td>${prospect.website ? `<a href="${escapeHtml(prospect.website)}" target="_blank">View</a>` : '-'}</td>
+                        ${currentProspectTab === 'active' ? `
+                            <td style="text-align: center;">
+                                <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <span style="font-weight: 700; font-size: 1.2rem; color: var(--headerColor);">${contactCount}</span>
+                                    <button class="btn-icon btn-primary" onclick="incrementContactCount('${prospect.id}')" title="Add Contact Attempt" style="width: 32px; height: 32px;">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        ` : ''}
                         <td>
                             <button class="btn-icon btn-secondary" onclick="viewProspect('${prospect.id}')" title="View">
                                 <i class="fas fa-eye"></i>
@@ -232,12 +265,18 @@ function displayProspects() {
                                     <i class="fas fa-trophy"></i>
                                 </button>
                             ` : ''}
+                            ${currentProspectTab === 'archived' ? `
+                                <button class="btn-icon btn-secondary" onclick="moveToActive('${prospect.id}')" title="Move Back to Active">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            ` : ''}
                             <button class="btn-icon" style="background: #dc3545; color: white;" onclick="deleteProspect('${prospect.id}')" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
-                `).join('')}
+                    `;
+                }).join('')}
             </tbody>
         </table>
     `;
@@ -255,7 +294,8 @@ function switchProspectTab(tab) {
         tabEl.classList.remove('active');
         if ((tab === 'new' && index === 0) ||
             (tab === 'active' && index === 1) ||
-            (tab === 'converted' && index === 2)) {
+            (tab === 'archived' && index === 2) ||
+            (tab === 'converted' && index === 3)) {
             tabEl.classList.add('active');
         }
     });
@@ -264,6 +304,7 @@ function switchProspectTab(tab) {
     const titles = {
         new: 'New Prospects',
         active: 'Active Prospects',
+        archived: 'Archived Prospects',
         converted: 'Converted Prospects'
     };
     document.getElementById('prospectListTitle').textContent = titles[tab];
@@ -276,6 +317,8 @@ async function markAsContacted(prospectId) {
     try {
         await prospectsCollection.doc(prospectId).update({
             status: 'active',
+            contactCount: 1,
+            lastContactedAt: firebase.firestore.FieldValue.serverTimestamp(),
             contactedAt: firebase.firestore.FieldValue.serverTimestamp(),
             updatedAt: firebase.firestore.FieldValue.serverTimestamp()
         });
@@ -284,6 +327,67 @@ async function markAsContacted(prospectId) {
     } catch (error) {
         console.error('Error updating prospect:', error);
         alert('Error updating prospect. Please try again.');
+    }
+}
+
+// Increment contact count
+async function incrementContactCount(prospectId) {
+    try {
+        const prospect = prospects.find(p => p.id === prospectId);
+        if (!prospect) return;
+
+        const newCount = (prospect.contactCount || 1) + 1;
+
+        // If reached 3 contacts, move to archived
+        if (newCount >= 3) {
+            if (confirm(`${prospect.name} has been contacted 3 times. Move to Archived Prospects?`)) {
+                await prospectsCollection.doc(prospectId).update({
+                    status: 'archived',
+                    contactCount: newCount,
+                    lastContactedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    archivedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            } else {
+                // Just increment without archiving
+                await prospectsCollection.doc(prospectId).update({
+                    contactCount: newCount,
+                    lastContactedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+        } else {
+            await prospectsCollection.doc(prospectId).update({
+                contactCount: newCount,
+                lastContactedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        }
+
+        loadProspects();
+    } catch (error) {
+        console.error('Error incrementing contact count:', error);
+        alert('Error updating contact count. Please try again.');
+    }
+}
+
+// Move prospect back to active from archived
+async function moveToActive(prospectId) {
+    try {
+        const prospect = prospects.find(p => p.id === prospectId);
+        if (!prospect) return;
+
+        if (confirm(`Move ${prospect.name} back to Active Prospects?`)) {
+            await prospectsCollection.doc(prospectId).update({
+                status: 'active',
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            loadProspects();
+        }
+    } catch (error) {
+        console.error('Error moving prospect to active:', error);
+        alert('Error moving prospect. Please try again.');
     }
 }
 
