@@ -6,11 +6,6 @@
 // 4. Copy your Firebase configuration and replace the values below
 // 5. Enable Firestore Database in Firebase Console (Build > Firestore Database)
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDwGVCKCVb3-eDLb72IfKu8hTwFQXIT0lQ",
@@ -22,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = firebase.firestore();
