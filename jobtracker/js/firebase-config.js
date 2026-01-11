@@ -28,5 +28,6 @@ const jobsCollection = db.collection('jobs');
 const prospectsCollection = db.collection('prospects');
 const clientsCollection = db.collection('clients');
 const financesCollection = db.collection('finances');
+const hostingPlansCollection = db.collection('hostingPlans');
 
 console.log('Firebase initialized successfully');

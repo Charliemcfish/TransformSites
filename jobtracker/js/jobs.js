@@ -51,24 +51,24 @@ function renderJobsPage() {
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">Monthly Recurring</span>
+                    <span class="stat-card-title">Website Builds</span>
                     <div class="stat-card-icon success">
-                        <i class="fas fa-redo"></i>
+                        <i class="fas fa-globe"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="monthlyRecurring">£0.00</div>
-                <div class="stat-card-description">From active monthly jobs</div>
+                <div class="stat-card-value" id="websiteJobsIncome">£0.00</div>
+                <div class="stat-card-description">One-time project income</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">One-Time Income</span>
+                    <span class="stat-card-title">Annual Hosting</span>
                     <div class="stat-card-icon secondary">
-                        <i class="fas fa-pound-sign"></i>
+                        <i class="fas fa-server"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="oneTimeIncome">£0.00</div>
-                <div class="stat-card-description">From one-time payment jobs</div>
+                <div class="stat-card-value" id="hostingJobsIncome">£0.00</div>
+                <div class="stat-card-description">Hosting revenue</div>
             </div>
         </div>
 
@@ -100,7 +100,8 @@ function renderJobsPage() {
                             <label class="form-label" for="jobPaymentType">Payment Type *</label>
                             <select id="jobPaymentType" class="form-select" required onchange="updatePaymentTypeLabel()">
                                 <option value="one_time">One-Time Payment</option>
-                                <option value="monthly">Monthly Payment</option>
+                                <option value="monthly">Monthly Payment (legacy)</option>
+                                <option value="annual_hosting">Annual Hosting</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -114,11 +115,14 @@ function renderJobsPage() {
                             <label class="form-label" for="jobPackage">Package</label>
                             <select id="jobPackage" class="form-select">
                                 <option value="">Select a package</option>
-                                <option value="starter">Starter Package</option>
-                                <option value="professional">Professional Package</option>
-                                <option value="premium">Premium Package</option>
+                                <option value="website_starter">Website Starter (£549 + £100/year hosting)</option>
+                                <option value="website_pro">Website Pro (£749 + £125/year hosting)</option>
+                                <option value="website_elite">Website Elite (£949 + £150/year hosting)</option>
                                 <option value="custom">Custom Package</option>
                             </select>
+                            <small style="color: var(--bodyTextColor); display: block; margin-top: 0.5rem;">
+                                <i class="fas fa-info-circle"></i> Selecting a package will auto-create website + hosting jobs
+                            </small>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="jobStatus">Status *</label>
@@ -288,8 +292,10 @@ function displayJobs() {
                         <tr>
                             <td><strong>${escapeHtml(job.name)}</strong></td>
                             <td>${client ? escapeHtml(client.name) : 'Unknown'}</td>
-                            <td>${job.package ? escapeHtml(job.package.charAt(0).toUpperCase() + job.package.slice(1)) : '-'}</td>
-                            <td>${job.paymentType === 'monthly' ? '💰 Monthly' : '💵 One-Time'}</td>
+                            <td>${job.package ? escapeHtml(getPackageDisplayName(job.package)) : '-'}</td>
+                            <td>${job.paymentType === PAYMENT_TYPES.MONTHLY ? '💰 Monthly' :
+                                job.paymentType === PAYMENT_TYPES.ANNUAL_HOSTING ? '📅 Annual Hosting' :
+                                '💵 One-Time'}</td>
                             <td><strong>£${parseFloat(job.amount || 0).toFixed(2)}</strong></td>
                             <td><span class="badge badge-${statusClass}">${formatStatus(job.status)}</span></td>
                             <td>
@@ -338,17 +344,17 @@ function updateJobStats() {
     const totalIncome = jobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
     document.getElementById('totalJobIncome').textContent = `£${totalIncome.toFixed(2)}`;
 
-    // Monthly recurring (only from active monthly jobs)
-    const monthlyRecurring = jobs
-        .filter(job => job.paymentType === 'monthly' && job.status !== 'completed' && job.status !== 'inactive')
+    // Website builds (one-time payments)
+    const websiteIncome = jobs
+        .filter(job => job.paymentType === PAYMENT_TYPES.ONE_TIME)
         .reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-    document.getElementById('monthlyRecurring').textContent = `£${monthlyRecurring.toFixed(2)}`;
+    document.getElementById('websiteJobsIncome').textContent = `£${websiteIncome.toFixed(2)}`;
 
-    // One-time income
-    const oneTimeIncome = jobs
-        .filter(job => job.paymentType === 'one_time')
+    // Annual hosting
+    const hostingIncome = jobs
+        .filter(job => job.paymentType === PAYMENT_TYPES.ANNUAL_HOSTING)
         .reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-    document.getElementById('oneTimeIncome').textContent = `£${oneTimeIncome.toFixed(2)}`;
+    document.getElementById('hostingJobsIncome').textContent = `£${hostingIncome.toFixed(2)}`;
 }
 
 // Open job modal
@@ -411,16 +417,81 @@ async function handleJobSave(e) {
 
     try {
         if (editingJobId) {
+            // Editing existing job - single update
             await jobsCollection.doc(editingJobId).update({
                 ...jobData,
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             });
         } else {
-            await jobsCollection.add({
-                ...jobData,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
+            // NEW LOGIC: Check if package is Website Starter/Pro/Elite
+            const packageInfo = getPackageById(jobData.package);
+
+            if (packageInfo && packageInfo.websitePrice !== null) {
+                // Auto-create paired jobs
+                const clientSnapshot = await clientsCollection.doc(jobData.clientId).get();
+                const client = clientSnapshot.data();
+
+                // Job 1: Website Build (one-time)
+                const websiteJobRef = await jobsCollection.add({
+                    name: `${packageInfo.displayName} - Website Build`,
+                    clientId: jobData.clientId,
+                    paymentType: PAYMENT_TYPES.ONE_TIME,
+                    amount: packageInfo.websitePrice,
+                    package: jobData.package,
+                    status: jobData.status,
+                    notes: jobData.notes,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Calculate hosting dates
+                const startDate = new Date();
+                const renewalDate = new Date();
+                renewalDate.setFullYear(renewalDate.getFullYear() + 1);
+
+                // Job 2: Annual Hosting
+                const hostingJobRef = await jobsCollection.add({
+                    name: `${packageInfo.displayName} - Annual Hosting`,
+                    clientId: jobData.clientId,
+                    paymentType: PAYMENT_TYPES.ANNUAL_HOSTING,
+                    amount: packageInfo.hostingPrice,
+                    package: jobData.package,
+                    status: 'in_progress',
+                    notes: `Hosting for ${client.name}. Renewal due: ${renewalDate.toLocaleDateString('en-GB')}`,
+                    linkedJobId: websiteJobRef.id,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Link jobs together
+                await jobsCollection.doc(websiteJobRef.id).update({
+                    linkedJobId: hostingJobRef.id
+                });
+
+                // Create hosting plan record
+                await hostingPlansCollection.add({
+                    clientId: jobData.clientId,
+                    clientName: client.name,
+                    packageType: jobData.package,
+                    cost: packageInfo.hostingPrice,
+                    startDate: firebase.firestore.Timestamp.fromDate(startDate),
+                    renewalDate: firebase.firestore.Timestamp.fromDate(renewalDate),
+                    status: 'active',
+                    notes: jobData.notes,
+                    jobId: hostingJobRef.id,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert(`Success! Created website build job (£${packageInfo.websitePrice}) and hosting job (£${packageInfo.hostingPrice}/year)`);
+            } else {
+                // Custom or manual job creation - single job
+                await jobsCollection.add({
+                    ...jobData,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
         }
 
         closeJobModal();

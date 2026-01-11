@@ -26,13 +26,13 @@ function renderFinancesPage() {
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">Monthly Recurring</span>
+                    <span class="stat-card-title">Income This Year</span>
                     <div class="stat-card-icon success">
-                        <i class="fas fa-redo"></i>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="financesMonthlyIncome">£0.00</div>
-                <div class="stat-card-description">Monthly retainer income</div>
+                <div class="stat-card-value" id="financesYearlyIncome">£0.00</div>
+                <div class="stat-card-description">From Jan 1 to now</div>
             </div>
 
             <div class="stat-card">
@@ -92,35 +92,35 @@ function renderFinancesPage() {
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-card-header">
-                        <span class="stat-card-title">One-Time Jobs</span>
+                        <span class="stat-card-title">Website Builds</span>
                         <div class="stat-card-icon primary">
-                            <i class="fas fa-pound-sign"></i>
+                            <i class="fas fa-globe"></i>
                         </div>
                     </div>
-                    <div class="stat-card-value" id="oneTimeJobsIncome">£0.00</div>
-                    <div class="stat-card-description" id="oneTimeJobsCount">0 jobs</div>
+                    <div class="stat-card-value" id="websiteBuildsIncome">£0.00</div>
+                    <div class="stat-card-description" id="websiteBuildsCount">0 projects</div>
                 </div>
 
                 <div class="stat-card">
                     <div class="stat-card-header">
-                        <span class="stat-card-title">Monthly Contracts</span>
+                        <span class="stat-card-title">Annual Hosting</span>
                         <div class="stat-card-icon success">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-server"></i>
                         </div>
                     </div>
-                    <div class="stat-card-value" id="monthlyJobsIncome">£0.00</div>
-                    <div class="stat-card-description" id="monthlyJobsCount">0 active contracts</div>
+                    <div class="stat-card-value" id="hostingIncome">£0.00</div>
+                    <div class="stat-card-description" id="hostingCount">0 plans</div>
                 </div>
 
                 <div class="stat-card">
                     <div class="stat-card-header">
-                        <span class="stat-card-title">Projected Annual</span>
+                        <span class="stat-card-title">Other Revenue</span>
                         <div class="stat-card-icon secondary">
-                            <i class="fas fa-calculator"></i>
+                            <i class="fas fa-dollar-sign"></i>
                         </div>
                     </div>
-                    <div class="stat-card-value" id="projectedAnnual">£0.00</div>
-                    <div class="stat-card-description">Based on current monthly</div>
+                    <div class="stat-card-value" id="otherIncome">£0.00</div>
+                    <div class="stat-card-description" id="otherJobsCount">0 jobs</div>
                 </div>
             </div>
         </div>
@@ -155,15 +155,20 @@ async function loadFinancialData() {
     try {
         const allJobs = await getAllJobs();
 
-        // Calculate total income
+        // Calculate total income (all jobs, all time)
         const totalIncome = allJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
         document.getElementById('financesTotalIncome').textContent = `£${totalIncome.toFixed(2)}`;
 
-        // Calculate monthly recurring income
-        const monthlyIncome = allJobs
-            .filter(job => job.paymentType === 'monthly' && job.status !== 'completed' && job.status !== 'inactive')
+        // Calculate income for current year
+        const currentYear = new Date().getFullYear();
+        const yearlyIncome = allJobs
+            .filter(job => {
+                if (!job.createdAt) return false;
+                const jobDate = job.createdAt.toDate();
+                return jobDate.getFullYear() === currentYear;
+            })
             .reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-        document.getElementById('financesMonthlyIncome').textContent = `£${monthlyIncome.toFixed(2)}`;
+        document.getElementById('financesYearlyIncome').textContent = `£${yearlyIncome.toFixed(2)}`;
 
         // Calculate average job value
         const avgJobValue = allJobs.length > 0 ? totalIncome / allJobs.length : 0;
@@ -173,22 +178,31 @@ async function loadFinancialData() {
         const completedJobs = allJobs.filter(job => job.status === 'completed').length;
         document.getElementById('financesCompletedJobs').textContent = completedJobs;
 
-        // Income breakdown
-        const oneTimeJobs = allJobs.filter(job => job.paymentType === 'one_time');
-        const oneTimeIncome = oneTimeJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-        document.getElementById('oneTimeJobsIncome').textContent = `£${oneTimeIncome.toFixed(2)}`;
-        document.getElementById('oneTimeJobsCount').textContent = `${oneTimeJobs.length} jobs`;
+        // Income breakdown by payment type
 
-        const monthlyJobs = allJobs.filter(job => job.paymentType === 'monthly' && job.status !== 'completed' && job.status !== 'inactive');
-        document.getElementById('monthlyJobsIncome').textContent = `£${monthlyIncome.toFixed(2)}`;
-        document.getElementById('monthlyJobsCount').textContent = `${monthlyJobs.length} active contracts`;
+        // Website builds (one-time payments)
+        const websiteBuilds = allJobs.filter(job => job.paymentType === PAYMENT_TYPES.ONE_TIME);
+        const websiteIncome = websiteBuilds.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+        document.getElementById('websiteBuildsIncome').textContent = `£${websiteIncome.toFixed(2)}`;
+        document.getElementById('websiteBuildsCount').textContent = `${websiteBuilds.length} projects`;
 
-        // Projected annual income
-        const projectedAnnual = monthlyIncome * 12;
-        document.getElementById('projectedAnnual').textContent = `£${projectedAnnual.toFixed(2)}`;
+        // Annual hosting
+        const hostingJobs = allJobs.filter(job => job.paymentType === PAYMENT_TYPES.ANNUAL_HOSTING);
+        const hostingIncome = hostingJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+        document.getElementById('hostingIncome').textContent = `£${hostingIncome.toFixed(2)}`;
+        document.getElementById('hostingCount').textContent = `${hostingJobs.length} plans`;
 
-        // Show motivational message
-        displayIncomeMotivation(totalIncome, monthlyIncome);
+        // Other revenue (monthly contracts, custom jobs)
+        const otherJobs = allJobs.filter(job =>
+            job.paymentType !== PAYMENT_TYPES.ONE_TIME &&
+            job.paymentType !== PAYMENT_TYPES.ANNUAL_HOSTING
+        );
+        const otherIncome = otherJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+        document.getElementById('otherIncome').textContent = `£${otherIncome.toFixed(2)}`;
+        document.getElementById('otherJobsCount').textContent = `${otherJobs.length} jobs`;
+
+        // Show motivational message based on yearly income
+        displayIncomeMotivation(totalIncome, yearlyIncome);
 
     } catch (error) {
         console.error('Error loading financial data:', error);
@@ -196,34 +210,38 @@ async function loadFinancialData() {
 }
 
 // Display motivational message based on income
-function displayIncomeMotivation(totalIncome, monthlyIncome) {
+function displayIncomeMotivation(totalIncome, yearlyIncome) {
     const container = document.getElementById('incomeMotivation');
 
     let message = '';
     let icon = '';
 
-    if (monthlyIncome >= 5000) {
-        message = "You're making serious moves, Charlie! £5K+ monthly is incredible!";
+    // Base motivation on yearly income
+    if (yearlyIncome >= 50000) {
+        message = "You're smashing it, Charlie! £50K+ this year is phenomenal!";
         icon = '🚀';
-    } else if (monthlyIncome >= 3000) {
-        message = "Crushing it! £3K+ monthly - keep scaling up!";
+    } else if (yearlyIncome >= 30000) {
+        message = "Incredible progress! £30K+ this year - keep it up!";
         icon = '💰';
-    } else if (monthlyIncome >= 1000) {
-        message = "Great progress! £1K+ monthly - you're building something real!";
+    } else if (yearlyIncome >= 15000) {
+        message = "Great work! £15K+ this year - you're building something real!";
         icon = '📈';
-    } else if (monthlyIncome > 0) {
-        message = "You're on the board! Keep adding those monthly contracts!";
+    } else if (yearlyIncome >= 5000) {
+        message = "You're on the board! £5K+ this year - momentum is building!";
         icon = '💪';
-    } else {
-        message = "Time to get those first monthly contracts, Charlie! Your empire awaits!";
+    } else if (yearlyIncome > 0) {
+        message = "Every journey starts somewhere! Keep adding those clients!";
         icon = '🎯';
+    } else {
+        message = "Time to get those first projects, Charlie! Your empire awaits!";
+        icon = '🔥';
     }
 
     if (totalIncome > 0) {
         container.innerHTML = `
             <div class="motivational-message">
                 <h2>${icon} ${message}</h2>
-                <p>Total income: £${totalIncome.toFixed(2)} | Monthly recurring: £${monthlyIncome.toFixed(2)}</p>
+                <p>All-time income: £${totalIncome.toFixed(2)} | This year: £${yearlyIncome.toFixed(2)}</p>
             </div>
         `;
     }
