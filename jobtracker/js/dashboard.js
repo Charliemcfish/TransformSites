@@ -55,6 +55,10 @@ function loadPage(page) {
             contentWrapper.innerHTML = renderFinancesPage();
             initializeFinancesPage();
             break;
+        case 'hosting':
+            contentWrapper.innerHTML = renderHostingPage();
+            initializeHostingPage();
+            break;
         case 'statistics':
             contentWrapper.innerHTML = renderStatisticsPage();
             initializeStatisticsPage();
@@ -88,13 +92,13 @@ function renderHomePage() {
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">Active Jobs</span>
+                    <span class="stat-card-title">Total Jobs</span>
                     <div class="stat-card-icon secondary">
                         <i class="fas fa-briefcase"></i>
                     </div>
                 </div>
                 <div class="stat-card-value" id="activeJobs">0</div>
-                <div class="stat-card-description">Jobs in progress</div>
+                <div class="stat-card-description">In progress + completed</div>
             </div>
 
             <div class="stat-card">
@@ -105,18 +109,18 @@ function renderHomePage() {
                     </div>
                 </div>
                 <div class="stat-card-value" id="totalProspects">0</div>
-                <div class="stat-card-description">Potential clients</div>
+                <div class="stat-card-description">All prospects added</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">Monthly Income</span>
+                    <span class="stat-card-title">Income This Year</span>
                     <div class="stat-card-icon primary">
                         <i class="fas fa-pound-sign"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="monthlyIncome">£0</div>
-                <div class="stat-card-description">Recurring revenue</div>
+                <div class="stat-card-value" id="yearlyIncome">£0</div>
+                <div class="stat-card-description">All jobs from Jan 1</div>
             </div>
         </div>
 
@@ -173,16 +177,22 @@ async function updateDashboardStats() {
         // Update stats
         document.getElementById('totalClients').textContent = clients.length;
 
-        const activeJobs = jobs.filter(job => job.status === 'in_progress').length;
-        document.getElementById('activeJobs').textContent = activeJobs;
+        // Total jobs (in progress + completed)
+        const totalJobs = jobs.filter(job => job.status === 'in_progress' || job.status === 'completed').length;
+        document.getElementById('activeJobs').textContent = totalJobs;
 
         document.getElementById('totalProspects').textContent = prospects.length;
 
-        // Calculate monthly income
-        const monthlyIncome = jobs
-            .filter(job => job.paymentType === 'monthly' && job.status !== 'completed')
+        // Calculate income for this year (all jobs from Jan 1 to now, any status)
+        const currentYear = new Date().getFullYear();
+        const yearlyIncome = jobs
+            .filter(job => {
+                if (!job.createdAt) return false;
+                const jobDate = job.createdAt.toDate();
+                return jobDate.getFullYear() === currentYear;
+            })
             .reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-        document.getElementById('monthlyIncome').textContent = `£${monthlyIncome.toFixed(2)}`;
+        document.getElementById('yearlyIncome').textContent = `£${yearlyIncome.toFixed(2)}`;
 
         // Calculate total income
         const totalIncome = jobs
@@ -215,7 +225,40 @@ function formatDate(timestamp) {
     return date.toLocaleDateString('en-GB');
 }
 
+// Check for hosting renewals and display warning badge
+async function checkHostingRenewals() {
+    try {
+        const snapshot = await hostingPlansCollection.where('status', '==', 'active').get();
+        const plans = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        const today = new Date();
+        const warningCount = plans.filter(plan => {
+            const renewalDate = plan.renewalDate.toDate();
+            const daysUntil = Math.ceil((renewalDate - today) / (1000 * 60 * 60 * 24));
+            return daysUntil <= HOSTING_RENEWAL_WARNING_DAYS && daysUntil > 0;
+        }).length;
+
+        if (warningCount > 0) {
+            const hostingNavItem = document.querySelector('[data-page="hosting"]');
+            if (hostingNavItem && !hostingNavItem.querySelector('.warning-badge')) {
+                const badge = document.createElement('span');
+                badge.className = 'warning-badge';
+                badge.textContent = warningCount;
+                badge.style.cssText = 'position: absolute; top: 8px; right: 8px; background: #ff9800; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;';
+                hostingNavItem.style.position = 'relative';
+                hostingNavItem.appendChild(badge);
+            }
+        }
+    } catch (error) {
+        console.error('Error checking hosting renewals:', error);
+    }
+}
+
 // Call update stats when on home page
 if (currentPage === 'home') {
     setTimeout(updateDashboardStats, 500);
 }
+
+// Check hosting renewals on page load and refresh every 5 minutes
+setTimeout(checkHostingRenewals, 1000);
+setInterval(checkHostingRenewals, 5 * 60 * 1000);

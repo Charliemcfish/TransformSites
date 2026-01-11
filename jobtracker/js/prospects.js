@@ -16,24 +16,24 @@ function renderProspectsPage() {
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">New Prospects</span>
+                    <span class="stat-card-title">Total Prospects</span>
                     <div class="stat-card-icon primary">
-                        <i class="fas fa-user-plus"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="newProspectsCount">0</div>
-                <div class="stat-card-description">Ready to contact</div>
+                <div class="stat-card-value" id="totalProspectsAdded">0</div>
+                <div class="stat-card-description">Regardless of status</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-card-header">
                     <span class="stat-card-title">Active Prospects</span>
                     <div class="stat-card-icon secondary">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-user-clock"></i>
                     </div>
                 </div>
                 <div class="stat-card-value" id="activeProspectsCount">0</div>
-                <div class="stat-card-description">Already contacted</div>
+                <div class="stat-card-description">New + Already contacted</div>
             </div>
 
             <div class="stat-card">
@@ -55,7 +55,28 @@ function renderProspectsPage() {
                     </div>
                 </div>
                 <div class="stat-card-value" id="conversionRateValue">0%</div>
-                <div class="stat-card-description">Success rate</div>
+                <div class="stat-card-description">Converted / Total</div>
+            </div>
+        </div>
+
+        <!-- Prospects Growth Chart -->
+        <div class="content-card">
+            <div class="content-card-header">
+                <h2 class="content-card-title">Prospects Added Over Time</h2>
+                <div class="chart-controls">
+                    <button class="btn btn-small btn-primary" onclick="changeProspectsTimeframe('week')">
+                        Weekly
+                    </button>
+                    <button class="btn btn-small btn-outline" onclick="changeProspectsTimeframe('month')">
+                        Monthly
+                    </button>
+                    <button class="btn btn-small btn-outline" onclick="changeProspectsTimeframe('year')">
+                        Yearly
+                    </button>
+                </div>
+            </div>
+            <div style="padding: 2rem; position: relative; height: 350px;">
+                <canvas id="prospectsGrowthChart"></canvas>
             </div>
         </div>
 
@@ -150,6 +171,9 @@ function initializeProspectsPage() {
     if (prospectForm) {
         prospectForm.addEventListener('submit', handleProspectSave);
     }
+
+    // Initialize prospects growth chart
+    initializeProspectsGrowthChart();
 }
 
 // Load all prospects
@@ -433,15 +457,19 @@ async function convertProspect(prospectId) {
 
 // Update prospect stats
 function updateProspectStats() {
-    const newCount = prospects.filter(p => p.status === 'new').length;
-    const activeCount = prospects.filter(p => p.status === 'active').length;
-    const convertedCount = prospects.filter(p => p.status === 'converted').length;
+    // Total prospects (all statuses)
     const total = prospects.length;
+    document.getElementById('totalProspectsAdded').textContent = total;
 
-    document.getElementById('newProspectsCount').textContent = newCount;
+    // Active prospects (new + active status)
+    const activeCount = prospects.filter(p => p.status === 'new' || p.status === 'active').length;
     document.getElementById('activeProspectsCount').textContent = activeCount;
+
+    // Converted prospects
+    const convertedCount = prospects.filter(p => p.status === 'converted').length;
     document.getElementById('convertedProspectsCount').textContent = convertedCount;
 
+    // Conversion rate (converted / total)
     const conversionRate = total > 0 ? ((convertedCount / total) * 100).toFixed(1) : 0;
     document.getElementById('conversionRateValue').textContent = `${conversionRate}%`;
 }
@@ -572,4 +600,170 @@ async function getAllProspects() {
         console.error('Error getting prospects:', error);
         return [];
     }
+}
+
+// Prospects Growth Chart
+let prospectsGrowthChart = null;
+let currentProspectsTimeframe = 'week';
+
+async function initializeProspectsGrowthChart() {
+    const ctx = document.getElementById('prospectsGrowthChart');
+    if (!ctx) return;
+
+    await updateProspectsGrowthChart();
+}
+
+async function updateProspectsGrowthChart() {
+    try {
+        const allProspects = await getAllProspects();
+
+        let labels = [];
+        let data = [];
+        const today = new Date();
+
+        if (currentProspectsTimeframe === 'week') {
+            // Last 7 days
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric' }));
+
+                const dayCount = allProspects.filter(p => {
+                    if (!p.createdAt) return false;
+                    const pDate = p.createdAt.toDate();
+                    return pDate.toDateString() === date.toDateString();
+                }).length;
+
+                data.push(dayCount);
+            }
+        } else if (currentProspectsTimeframe === 'month') {
+            // Last 30 days
+            for (let i = 29; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }));
+
+                const dayCount = allProspects.filter(p => {
+                    if (!p.createdAt) return false;
+                    const pDate = p.createdAt.toDate();
+                    return pDate.toDateString() === date.toDateString();
+                }).length;
+
+                data.push(dayCount);
+            }
+        } else {
+            // Last 12 months
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            for (let i = 11; i >= 0; i--) {
+                const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+                labels.push(months[date.getMonth()] + ' ' + date.getFullYear().toString().substr(2));
+
+                const monthCount = allProspects.filter(p => {
+                    if (!p.createdAt) return false;
+                    const pDate = p.createdAt.toDate();
+                    return pDate.getMonth() === date.getMonth() && pDate.getFullYear() === date.getFullYear();
+                }).length;
+
+                data.push(monthCount);
+            }
+        }
+
+        // Destroy existing chart
+        if (prospectsGrowthChart) {
+            prospectsGrowthChart.destroy();
+        }
+
+        // Create new chart
+        const ctx = document.getElementById('prospectsGrowthChart').getContext('2d');
+        prospectsGrowthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'New Prospects',
+                    data: data,
+                    backgroundColor: 'rgba(234, 67, 93, 0.8)',
+                    borderColor: '#EA435D',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: {
+                            family: 'Poppins',
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            family: 'Poppins',
+                            size: 13
+                        },
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 12
+                            },
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 11
+                            },
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error creating prospects growth chart:', error);
+    }
+}
+
+function changeProspectsTimeframe(timeframe) {
+    currentProspectsTimeframe = timeframe;
+
+    // Update button states
+    const buttons = document.querySelectorAll('.chart-controls .btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+    });
+
+    if (timeframe === 'week') {
+        buttons[0].classList.add('btn-primary');
+        buttons[0].classList.remove('btn-outline');
+    } else if (timeframe === 'month') {
+        buttons[1].classList.add('btn-primary');
+        buttons[1].classList.remove('btn-outline');
+    } else {
+        buttons[2].classList.add('btn-primary');
+        buttons[2].classList.remove('btn-outline');
+    }
+
+    updateProspectsGrowthChart();
 }

@@ -21,18 +21,18 @@ function renderClientsPage() {
                     </div>
                 </div>
                 <div class="stat-card-value" id="totalClientsCount">0</div>
-                <div class="stat-card-description">Active paying clients</div>
+                <div class="stat-card-description">Active clients</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-card-header">
-                    <span class="stat-card-title">Monthly Revenue</span>
+                    <span class="stat-card-title">Total Revenue</span>
                     <div class="stat-card-icon success">
                         <i class="fas fa-pound-sign"></i>
                     </div>
                 </div>
-                <div class="stat-card-value" id="clientMonthlyRevenue">£0.00</div>
-                <div class="stat-card-description">From all client jobs</div>
+                <div class="stat-card-value" id="clientTotalRevenue">£0.00</div>
+                <div class="stat-card-description">From all their jobs</div>
             </div>
 
             <div class="stat-card">
@@ -43,7 +43,7 @@ function renderClientsPage() {
                     </div>
                 </div>
                 <div class="stat-card-value" id="avgClientValue">£0.00</div>
-                <div class="stat-card-description">Average per client</div>
+                <div class="stat-card-description">Total revenue / clients</div>
             </div>
         </div>
 
@@ -59,6 +59,27 @@ function renderClientsPage() {
                 <p style="text-align: center; color: var(--bodyTextColor); padding: 2rem;">
                     Loading clients...
                 </p>
+            </div>
+        </div>
+
+        <!-- Clients Growth Chart -->
+        <div class="content-card">
+            <div class="content-card-header">
+                <h2 class="content-card-title">Clients Added Over Time</h2>
+                <div class="chart-controls">
+                    <button class="btn btn-small btn-primary" onclick="changeClientsTimeframe('week')">
+                        Weekly
+                    </button>
+                    <button class="btn btn-small btn-outline" onclick="changeClientsTimeframe('month')">
+                        Monthly
+                    </button>
+                    <button class="btn btn-small btn-outline" onclick="changeClientsTimeframe('year')">
+                        Yearly
+                    </button>
+                </div>
+            </div>
+            <div style="padding: 2rem; position: relative; height: 350px;">
+                <canvas id="clientsGrowthChart"></canvas>
             </div>
         </div>
 
@@ -114,15 +135,18 @@ function renderClientsPage() {
                             <label class="form-label" for="clientPackage">Package</label>
                             <select id="clientPackage" class="form-select">
                                 <option value="">Select a package</option>
-                                <option value="starter">Starter Package</option>
-                                <option value="professional">Professional Package</option>
-                                <option value="premium">Premium Package</option>
+                                <option value="website_starter">Website Starter</option>
+                                <option value="website_pro">Website Pro</option>
+                                <option value="website_elite">Website Elite</option>
                                 <option value="custom">Custom Package</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="clientMonthlyPayment">Monthly Payment</label>
+                            <label class="form-label" for="clientMonthlyPayment">Legacy Monthly Payment (deprecated)</label>
                             <input type="number" id="clientMonthlyPayment" class="form-input" placeholder="0.00" step="0.01" min="0">
+                            <small style="color: #6c757d; display: block; margin-top: 0.5rem;">
+                                <i class="fas fa-info-circle"></i> For existing monthly clients only. New pricing uses hosting plans.
+                            </small>
                         </div>
                     </div>
 
@@ -163,6 +187,9 @@ function initializeClientsPage() {
     if (clientForm) {
         clientForm.addEventListener('submit', handleClientSave);
     }
+
+    // Initialize clients growth chart
+    initializeClientsGrowthChart();
 }
 
 // Load all clients
@@ -220,7 +247,7 @@ function displayClients() {
                             <a href="mailto:${escapeHtml(client.email)}">${escapeHtml(client.email)}</a>
                         </td>
                         <td>${client.website ? `<a href="${escapeHtml(client.website)}" target="_blank">View Site</a>` : '-'}</td>
-                        <td>${client.package ? escapeHtml(client.package.charAt(0).toUpperCase() + client.package.slice(1)) : '-'}</td>
+                        <td>${client.package ? escapeHtml(getPackageDisplayName(client.package)) : '-'}</td>
                         <td>${client.monthlyPayment ? `£${parseFloat(client.monthlyPayment).toFixed(2)}` : '-'}</td>
                         <td>
                             <button class="btn-icon btn-secondary" onclick="viewClient('${client.id}')" title="View Details">
@@ -245,20 +272,18 @@ function displayClients() {
 // Update client stats
 async function updateClientStats() {
     try {
+        // Total clients
         document.getElementById('totalClientsCount').textContent = allClients.length;
 
-        // Get all jobs to calculate monthly revenue
+        // Get all jobs to calculate total revenue
         const allJobs = await getAllJobs();
 
-        // Calculate total monthly revenue from all client jobs
-        const monthlyRevenue = allJobs
-            .filter(job => job.paymentType === 'monthly' && job.status !== 'completed' && job.status !== 'inactive')
-            .reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+        // Calculate total revenue from all jobs for all clients
+        const totalRevenue = allJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+        document.getElementById('clientTotalRevenue').textContent = `£${totalRevenue.toFixed(2)}`;
 
-        document.getElementById('clientMonthlyRevenue').textContent = `£${monthlyRevenue.toFixed(2)}`;
-
-        // Calculate average client value
-        const avgValue = allClients.length > 0 ? monthlyRevenue / allClients.length : 0;
+        // Calculate average client value (total revenue / number of clients)
+        const avgValue = allClients.length > 0 ? totalRevenue / allClients.length : 0;
         document.getElementById('avgClientValue').textContent = `£${avgValue.toFixed(2)}`;
 
     } catch (error) {
@@ -414,4 +439,172 @@ async function getAllClients() {
         console.error('Error getting clients:', error);
         return [];
     }
+}
+
+// Clients Growth Chart
+let clientsGrowthChart = null;
+let currentClientsTimeframe = 'week';
+
+async function initializeClientsGrowthChart() {
+    const ctx = document.getElementById('clientsGrowthChart');
+    if (!ctx) return;
+
+    await updateClientsGrowthChart();
+}
+
+async function updateClientsGrowthChart() {
+    try {
+        const allClientsData = await getAllClients();
+
+        let labels = [];
+        let data = [];
+        const today = new Date();
+
+        if (currentClientsTimeframe === 'week') {
+            // Last 7 days
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric' }));
+
+                const dayCount = allClientsData.filter(c => {
+                    if (!c.createdAt) return false;
+                    const cDate = c.createdAt.toDate();
+                    return cDate.toDateString() === date.toDateString();
+                }).length;
+
+                data.push(dayCount);
+            }
+        } else if (currentClientsTimeframe === 'month') {
+            // Last 30 days
+            for (let i = 29; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                labels.push(date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }));
+
+                const dayCount = allClientsData.filter(c => {
+                    if (!c.createdAt) return false;
+                    const cDate = c.createdAt.toDate();
+                    return cDate.toDateString() === date.toDateString();
+                }).length;
+
+                data.push(dayCount);
+            }
+        } else {
+            // Last 12 months
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            for (let i = 11; i >= 0; i--) {
+                const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+                labels.push(months[date.getMonth()] + ' ' + date.getFullYear().toString().substr(2));
+
+                const monthCount = allClientsData.filter(c => {
+                    if (!c.createdAt) return false;
+                    const cDate = c.createdAt.toDate();
+                    return cDate.getMonth() === date.getMonth() && cDate.getFullYear() === date.getFullYear();
+                }).length;
+
+                data.push(monthCount);
+            }
+        }
+
+        // Destroy existing chart
+        if (clientsGrowthChart) {
+            clientsGrowthChart.destroy();
+        }
+
+        // Create new chart
+        const ctx = document.getElementById('clientsGrowthChart').getContext('2d');
+        clientsGrowthChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'New Clients',
+                    data: data,
+                    borderColor: '#361D49',
+                    backgroundColor: 'rgba(54, 29, 73, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: {
+                            family: 'Poppins',
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            family: 'Poppins',
+                            size: 13
+                        },
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 12
+                            },
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'Poppins',
+                                size: 11
+                            },
+                            maxRotation: 45,
+                            minRotation: 45
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error creating clients growth chart:', error);
+    }
+}
+
+function changeClientsTimeframe(timeframe) {
+    currentClientsTimeframe = timeframe;
+
+    // Update button states
+    const buttons = document.querySelectorAll('.chart-controls .btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+    });
+
+    if (timeframe === 'week') {
+        buttons[0].classList.add('btn-primary');
+        buttons[0].classList.remove('btn-outline');
+    } else if (timeframe === 'month') {
+        buttons[1].classList.add('btn-primary');
+        buttons[1].classList.remove('btn-outline');
+    } else {
+        buttons[2].classList.add('btn-primary');
+        buttons[2].classList.remove('btn-outline');
+    }
+
+    updateClientsGrowthChart();
 }
