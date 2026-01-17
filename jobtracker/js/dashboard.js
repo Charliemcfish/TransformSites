@@ -263,19 +263,13 @@ setInterval(checkHostingRenewals, 5 * 60 * 1000);
 
 // Mobile Menu Functions
 function toggleMobileMenu() {
-    console.log('toggleMobileMenu called - window width:', window.innerWidth);
     const sidebar = document.querySelector('.sidebar');
     if (sidebar) {
         sidebar.classList.toggle('active');
-        console.log('Sidebar active state:', sidebar.classList.contains('active'));
-    } else {
-        console.error('Sidebar element not found!');
     }
 }
 
 function initializeMobileMenu() {
-    console.log('initializeMobileMenu called');
-
     // Close sidebar when clicking on a nav item on mobile
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
@@ -301,6 +295,4 @@ function initializeMobileMenu() {
             sidebar.classList.remove('active');
         }
     });
-
-    console.log('Mobile menu initialized successfully');
 }

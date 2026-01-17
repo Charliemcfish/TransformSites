@@ -186,11 +186,26 @@ async function loadFinancialData() {
         document.getElementById('websiteBuildsIncome').textContent = `£${websiteIncome.toFixed(2)}`;
         document.getElementById('websiteBuildsCount').textContent = `${websiteBuilds.length} projects`;
 
-        // Annual hosting
-        const hostingJobs = allJobs.filter(job => job.paymentType === PAYMENT_TYPES.ANNUAL_HOSTING);
-        const hostingIncome = hostingJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
-        document.getElementById('hostingIncome').textContent = `£${hostingIncome.toFixed(2)}`;
-        document.getElementById('hostingCount').textContent = `${hostingJobs.length} plans`;
+        // Annual hosting - fetch from hosting plans collection for accurate data
+        try {
+            const hostingSnapshot = await hostingPlansCollection.where('status', '==', 'active').get();
+            const activeHostingPlans = hostingSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            const hostingRevenue = activeHostingPlans.reduce((sum, plan) => {
+                const cost = parseFloat(plan.cost);
+                return sum + (isNaN(cost) ? 0 : cost);
+            }, 0);
+
+            document.getElementById('hostingIncome').textContent = `£${hostingRevenue.toFixed(2)}`;
+            document.getElementById('hostingCount').textContent = `${activeHostingPlans.length} plans`;
+        } catch (hostingError) {
+            console.error('Error fetching hosting plans:', hostingError);
+            // Fallback to jobs-based calculation
+            const hostingJobs = allJobs.filter(job => job.paymentType === PAYMENT_TYPES.ANNUAL_HOSTING);
+            const hostingIncome = hostingJobs.reduce((sum, job) => sum + (parseFloat(job.amount) || 0), 0);
+            document.getElementById('hostingIncome').textContent = `£${hostingIncome.toFixed(2)}`;
+            document.getElementById('hostingCount').textContent = `${hostingJobs.length} plans`;
+        }
 
         // Other revenue (monthly contracts, custom jobs)
         const otherJobs = allJobs.filter(job =>
