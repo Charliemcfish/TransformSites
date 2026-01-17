@@ -249,31 +249,65 @@ function displayHostingPlans() {
 
 // Update hosting stats
 function updateHostingStats() {
-    const activePlans = hostingPlans.filter(p => p.status === 'active');
-    document.getElementById('activeHostingCount').textContent = activePlans.length;
+    // Filter active plans (case-insensitive to handle any data inconsistencies)
+    const activePlans = hostingPlans.filter(p =>
+        p.status && p.status.toLowerCase() === 'active'
+    );
 
-    const revenue = activePlans.reduce((sum, plan) => sum + (parseFloat(plan.cost) || 0), 0);
-    document.getElementById('hostingRevenue').textContent = `£${revenue.toFixed(2)}`;
+    const activeCountElement = document.getElementById('activeHostingCount');
+    if (activeCountElement) {
+        activeCountElement.textContent = activePlans.length;
+    }
 
+    // Calculate revenue from active plans
+    const revenue = activePlans.reduce((sum, plan) => {
+        const cost = parseFloat(plan.cost);
+        return sum + (isNaN(cost) ? 0 : cost);
+    }, 0);
+
+    const revenueElement = document.getElementById('hostingRevenue');
+    if (revenueElement) {
+        revenueElement.textContent = `£${revenue.toFixed(2)}`;
+    }
+
+    // Calculate renewals due soon
     const today = new Date();
     const renewalsDue = activePlans.filter(plan => {
-        const renewalDate = plan.renewalDate.toDate();
-        const daysUntil = Math.ceil((renewalDate - today) / (1000 * 60 * 60 * 24));
-        return daysUntil <= HOSTING_RENEWAL_WARNING_DAYS && daysUntil > 0;
+        if (!plan.renewalDate) return false;
+        try {
+            const renewalDate = plan.renewalDate.toDate();
+            const daysUntil = Math.ceil((renewalDate - today) / (1000 * 60 * 60 * 24));
+            return daysUntil <= HOSTING_RENEWAL_WARNING_DAYS && daysUntil > 0;
+        } catch (error) {
+            console.error('Error calculating renewal date for plan:', plan.id, error);
+            return false;
+        }
     }).length;
-    document.getElementById('renewalsDue').textContent = renewalsDue;
+
+    const renewalsDueElement = document.getElementById('renewalsDue');
+    if (renewalsDueElement) {
+        renewalsDueElement.textContent = renewalsDue;
+    }
 }
 
 // Display renewal warnings
 function displayRenewalWarnings() {
     const container = document.getElementById('renewalWarnings');
+    if (!container) return;
+
     const today = new Date();
 
     const warnings = hostingPlans.filter(plan => {
-        if (plan.status !== 'active') return false;
-        const renewalDate = plan.renewalDate.toDate();
-        const daysUntil = Math.ceil((renewalDate - today) / (1000 * 60 * 60 * 24));
-        return daysUntil <= HOSTING_RENEWAL_WARNING_DAYS && daysUntil > 0;
+        if (!plan.status || plan.status.toLowerCase() !== 'active') return false;
+        if (!plan.renewalDate) return false;
+        try {
+            const renewalDate = plan.renewalDate.toDate();
+            const daysUntil = Math.ceil((renewalDate - today) / (1000 * 60 * 60 * 24));
+            return daysUntil <= HOSTING_RENEWAL_WARNING_DAYS && daysUntil > 0;
+        } catch (error) {
+            console.error('Error calculating renewal date for warning:', plan.id, error);
+            return false;
+        }
     });
 
     if (warnings.length === 0) {
