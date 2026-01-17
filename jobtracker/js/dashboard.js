@@ -5,6 +5,7 @@ let currentPage = 'home';
 document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     loadPage('home');
+    initializeMobileMenu();
 });
 
 // Initialize sidebar navigation
@@ -34,6 +35,7 @@ function loadPage(page) {
     switch (page) {
         case 'home':
             contentWrapper.innerHTML = renderHomePage();
+            updateDashboardStats();
             break;
         case 'notes':
             contentWrapper.innerHTML = renderNotesPage();
@@ -65,6 +67,7 @@ function loadPage(page) {
             break;
         default:
             contentWrapper.innerHTML = renderHomePage();
+            updateDashboardStats();
     }
 }
 
@@ -254,11 +257,38 @@ async function checkHostingRenewals() {
     }
 }
 
-// Call update stats when on home page
-if (currentPage === 'home') {
-    setTimeout(updateDashboardStats, 500);
-}
-
 // Check hosting renewals on page load and refresh every 5 minutes
 setTimeout(checkHostingRenewals, 1000);
 setInterval(checkHostingRenewals, 5 * 60 * 1000);
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+}
+
+function initializeMobileMenu() {
+    // Close sidebar when clicking on a nav item on mobile
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.classList.remove('active');
+            }
+        });
+    });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidebar');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+
+        if (window.innerWidth <= 768 &&
+            sidebar.classList.contains('active') &&
+            !sidebar.contains(e.target) &&
+            !mobileMenuToggle.contains(e.target)) {
+            sidebar.classList.remove('active');
+        }
+    });
+}
