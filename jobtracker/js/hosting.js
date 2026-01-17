@@ -249,14 +249,22 @@ function displayHostingPlans() {
 
 // Update hosting stats
 function updateHostingStats() {
+    console.log('updateHostingStats called - Total plans:', hostingPlans.length);
+
     // Filter active plans (case-insensitive to handle any data inconsistencies)
     const activePlans = hostingPlans.filter(p =>
         p.status && p.status.toLowerCase() === 'active'
     );
 
+    console.log('Active hosting plans:', activePlans.length);
+    console.log('Active plans data:', activePlans);
+
     const activeCountElement = document.getElementById('activeHostingCount');
     if (activeCountElement) {
         activeCountElement.textContent = activePlans.length;
+        console.log('Set activeHostingCount to:', activePlans.length);
+    } else {
+        console.error('activeHostingCount element not found!');
     }
 
     // Calculate revenue from active plans
@@ -265,9 +273,14 @@ function updateHostingStats() {
         return sum + (isNaN(cost) ? 0 : cost);
     }, 0);
 
+    console.log('Total hosting revenue:', revenue);
+
     const revenueElement = document.getElementById('hostingRevenue');
     if (revenueElement) {
         revenueElement.textContent = `£${revenue.toFixed(2)}`;
+        console.log('Set hostingRevenue to: £' + revenue.toFixed(2));
+    } else {
+        console.error('hostingRevenue element not found!');
     }
 
     // Calculate renewals due soon
@@ -284,10 +297,17 @@ function updateHostingStats() {
         }
     }).length;
 
+    console.log('Renewals due soon:', renewalsDue);
+
     const renewalsDueElement = document.getElementById('renewalsDue');
     if (renewalsDueElement) {
         renewalsDueElement.textContent = renewalsDue;
+        console.log('Set renewalsDue to:', renewalsDue);
+    } else {
+        console.error('renewalsDue element not found!');
     }
+
+    console.log('Hosting stats updated successfully');
 }
 
 // Display renewal warnings
