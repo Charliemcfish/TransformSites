@@ -149,6 +149,12 @@
             */
 
             /* ===================
+               LOGO WHITE EFFECT
+               =================== */
+            /* Set to 1 to enable white logo effect, 0 to disable */
+            --logo-white-effect: 1;
+
+            /* ===================
                SPACING & SIZING
                =================== */
             --section-padding: 100px;
@@ -369,7 +375,7 @@
             height: 50px;
             width: auto;
             transition: all var(--transition-speed);
-            filter: brightness(0) invert(1);
+            filter: brightness(calc(var(--logo-white-effect) * 0 + (1 - var(--logo-white-effect)))) invert(var(--logo-white-effect));
         }
 
         .navbar.scrolled .nav-logo img {
@@ -1569,7 +1575,7 @@
         .footer-logo img {
             height: 50px;
             width: auto;
-            filter: brightness(0) invert(1);
+            filter: brightness(calc(var(--logo-white-effect) * 0 + (1 - var(--logo-white-effect)))) invert(var(--logo-white-effect));
         }
 
         .footer-logo span {
@@ -1726,6 +1732,20 @@
             color: var(--color-secondary-light);
         }
 
+        .glisten-text {
+            background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-secondary) 40%, #fff 50%, var(--color-secondary) 60%, var(--color-secondary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glisten 3s linear infinite;
+        }
+
+        @keyframes glisten {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
         /* ============================================
            ANIMATIONS
            ============================================ */
@@ -1753,9 +1773,9 @@
         @media (max-width: 1024px) {
             .hero h1 { font-size: 2.8rem; }
             .intro .container { grid-template-columns: 1fr; gap: 50px; }
-            .intro-content { padding-right: 0; }
-            .intro-image { order: -1; }
-            .intro-image-badge { left: auto; right: 20px; }
+            .intro-content { padding-right: 0; order: -1; }
+            .intro-image { order: 0; }
+            .intro-image-badge { display: none; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .reviews-grid { grid-template-columns: 1fr; }
             .review-card.featured { transform: none; }
@@ -1773,14 +1793,14 @@
                 width: 80%;
                 max-width: 400px;
                 height: 100vh;
-                background: var(--bg-primary);
+                background: linear-gradient(135deg, var(--bg-dark) 0%, var(--color-primary-dark) 100%);
                 flex-direction: column;
                 justify-content: center;
                 align-items: flex-start;
                 padding-left: 50px;
                 gap: 25px;
-                transition: right var(--transition-speed);
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
             }
 
             .nav-menu.active {
@@ -1788,13 +1808,36 @@
             }
 
             .nav-menu a {
-                color: var(--text-primary);
-                font-size: 1.3rem;
+                color: var(--text-light);
+                font-size: 1.5rem;
+                opacity: 0;
+                transform: translateX(30px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active a {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-menu.active li:nth-child(1) a { transition-delay: 0.1s; }
+            .nav-menu.active li:nth-child(2) a { transition-delay: 0.15s; }
+            .nav-menu.active li:nth-child(3) a { transition-delay: 0.2s; }
+            .nav-menu.active li:nth-child(4) a { transition-delay: 0.25s; }
+            .nav-menu.active li:nth-child(5) a { transition-delay: 0.3s; }
+            .nav-menu.active li:nth-child(6) a { transition-delay: 0.35s; }
+
+            .nav-menu a:hover {
+                color: var(--color-secondary);
             }
 
             .mobile-toggle {
                 display: flex;
                 z-index: 1001;
+            }
+
+            .mobile-toggle.active span {
+                background: var(--color-primary);
             }
 
             .mobile-toggle.active span:nth-child(1) {
@@ -1946,9 +1989,7 @@
             <source src="plumber-assets/another-plumbing-video.mp4" type="video/mp4">
         </video>
 
-        <div class="hero-logo-watermark">
-            <img src="plumber-assets/template-logo.png" alt="">
-        </div>
+      
 
         <div class="container">
             <div class="hero-content">
@@ -2060,8 +2101,8 @@
                 </div>
                 <div class="stat-item animate-on-scroll animate-delay-2">
                     <i class="fas fa-smile stat-icon"></i>
-                    <div class="stat-number" data-target="99">0</div>
-                    <div class="stat-label">Satisfaction Rate %</div>
+                    <div class="stat-number" data-target="99" data-suffix="%">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
                 </div>
                 <div class="stat-item animate-on-scroll animate-delay-3">
                     <i class="fas fa-clock stat-icon"></i>
@@ -2098,7 +2139,7 @@
                 </div>
                 <div class="service-card animate-on-scroll animate-delay-1">
                     <div class="service-card-image">
-                        <img src="plumber-assets/man-fixing-radiator.jpg" alt="Boiler Installation">
+                        <img src="plumber-assets/boiler-installation-in-progress.jpg" alt="Boiler Installation">
                         <div class="service-card-icon">
                             <i class="fas fa-fire"></i>
                         </div>
@@ -2113,7 +2154,7 @@
                 </div>
                 <div class="service-card animate-on-scroll animate-delay-2">
                     <div class="service-card-image">
-                        <img src="plumber-assets/heating-dials.jpg" alt="Central Heating">
+                        <img src="plumber-assets/guy-holding-radiator.jpg" alt="Central Heating">
                         <div class="service-card-icon">
                             <i class="fas fa-temperature-high"></i>
                         </div>
@@ -2128,7 +2169,7 @@
                 </div>
                 <div class="service-card animate-on-scroll animate-delay-3">
                     <div class="service-card-image">
-                        <img src="plumber-assets/water-testing.jpg" alt="Bathroom Installation">
+                        <img src="plumber-assets/new-bathroom-installation.jpg" alt="Bathroom Installation">
                         <div class="service-card-icon">
                             <i class="fas fa-bath"></i>
                         </div>
@@ -2187,116 +2228,100 @@
         <div class="portfolio-slider">
             <!-- First set of images -->
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-1.jpg" alt="Bathroom renovation project">
+                <img src="plumber-assets/new-bathroom-fitting-2.jpg" alt="Project 1">
                 <div class="portfolio-item-overlay">
-                    <h4>Modern Bathroom Refit</h4>
-                    <span>Complete Installation</span>
+                    <h4>Project 1</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-2.jpg" alt="Heating system installation">
+                <img src="plumber-assets/new-bathroom-fitting-3.jpg" alt="Project 2">
                 <div class="portfolio-item-overlay">
-                    <h4>Underfloor Heating</h4>
-                    <span>New Build Project</span>
+                    <h4>Project 2</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-3.jpg" alt="Commercial plumbing">
+                <img src="plumber-assets/new-kitchen-sink-installation.jpg" alt="Project 3">
                 <div class="portfolio-item-overlay">
-                    <h4>Commercial Pipework</h4>
-                    <span>Restaurant Fit-out</span>
+                    <h4>Project 3</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-4.jpg" alt="Boiler installation">
+                <img src="plumber-assets/new-kitchen-sink-installiation-2.jpg" alt="Project 4">
                 <div class="portfolio-item-overlay">
-                    <h4>Boiler Upgrade</h4>
-                    <span>Energy Efficient System</span>
+                    <h4>Project 4</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-5.jpg" alt="Kitchen plumbing">
+                <img src="plumber-assets/new-boiler-installation.png" alt="Project 5">
                 <div class="portfolio-item-overlay">
-                    <h4>Kitchen Renovation</h4>
-                    <span>Complete Plumbing</span>
+                    <h4>Project 5</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-6.jpg" alt="Radiator installation">
+                <img src="plumber-assets/boiler-installation-in-progress.jpg" alt="Project 6">
                 <div class="portfolio-item-overlay">
-                    <h4>Designer Radiators</h4>
-                    <span>Heating Upgrade</span>
+                    <h4>Project 6</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-7.png" alt="Wet room installation">
+                <img src="plumber-assets/bathroom sink showing piping.jpg" alt="Project 7">
                 <div class="portfolio-item-overlay">
-                    <h4>Luxury Wet Room</h4>
-                    <span>Bespoke Design</span>
+                    <h4>Project 7</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-8.jpg" alt="Emergency repair">
+                <img src="plumber-assets/project-8.jpg" alt="Project 8">
                 <div class="portfolio-item-overlay">
-                    <h4>Emergency Repair</h4>
-                    <span>24hr Response</span>
+                    <h4>Project 8</h4>
                 </div>
             </div>
             <!-- Duplicate set for seamless scrolling -->
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-1.jpg" alt="Bathroom renovation project">
+                <img src="plumber-assets/project-1.jpg" alt="Project 1">
                 <div class="portfolio-item-overlay">
-                    <h4>Modern Bathroom Refit</h4>
-                    <span>Complete Installation</span>
+                    <h4>Project 1</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-2.jpg" alt="Heating system installation">
+                <img src="plumber-assets/project-2.jpg" alt="Project 2">
                 <div class="portfolio-item-overlay">
-                    <h4>Underfloor Heating</h4>
-                    <span>New Build Project</span>
+                    <h4>Project 2</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portffolio-slider-image-3.jpg" alt="Commercial plumbing">
+                <img src="plumber-assets/project-3.jpg" alt="Project 3">
                 <div class="portfolio-item-overlay">
-                    <h4>Commercial Pipework</h4>
-                    <span>Restaurant Fit-out</span>
+                    <h4>Project 3</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-4.jpg" alt="Boiler installation">
+                <img src="plumber-assets/project-4.jpg" alt="Project 4">
                 <div class="portfolio-item-overlay">
-                    <h4>Boiler Upgrade</h4>
-                    <span>Energy Efficient System</span>
+                    <h4>Project 4</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-5.jpg" alt="Kitchen plumbing">
+                <img src="plumber-assets/project-5.jpg" alt="Project 5">
                 <div class="portfolio-item-overlay">
-                    <h4>Kitchen Renovation</h4>
-                    <span>Complete Plumbing</span>
+                    <h4>Project 5</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-6.jpg" alt="Radiator installation">
+                <img src="plumber-assets/project-6.jpg" alt="Project 6">
                 <div class="portfolio-item-overlay">
-                    <h4>Designer Radiators</h4>
-                    <span>Heating Upgrade</span>
+                    <h4>Project 6</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-7.png" alt="Wet room installation">
+                <img src="plumber-assets/project-7.jpg" alt="Project 7">
                 <div class="portfolio-item-overlay">
-                    <h4>Luxury Wet Room</h4>
-                    <span>Bespoke Design</span>
+                    <h4>Project 7</h4>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="plumber-assets/portfolio-slider-image-8.jpg" alt="Emergency repair">
+                <img src="plumber-assets/project-8.jpg" alt="Project 8">
                 <div class="portfolio-item-overlay">
-                    <h4>Emergency Repair</h4>
-                    <span>24hr Response</span>
+                    <h4>Project 8</h4>
                 </div>
             </div>
         </div>
@@ -2468,6 +2493,9 @@
                         <div class="cta-info-text">
                             <h4>Phone Number</h4>
                             <p><a href="tel:01234567890">01234 567 890</a></p>
+                            <a href="https://wa.me/441234567890" class="btn btn-whatsapp" style="margin-top: 10px; padding: 10px 20px; font-size: 0.85rem; background: #25D366; color: white; border-radius: var(--border-radius);">
+                                <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+                            </a>
                         </div>
                     </div>
                     <div class="cta-info-item">
@@ -2552,9 +2580,9 @@
                     <p>Your trusted local plumbing and heating experts. Delivering quality workmanship and exceptional service since 2009. Gas Safe registered and fully insured for your peace of mind.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Google Business"><i class="fab fa-google"></i></a>
                     </div>
                 </div>
                 <div class="footer-column footer-quick-links">
@@ -2604,7 +2632,7 @@
                 </div>
             </div>
             <div class="footer-credit">
-                <p>Designed by <a href="https://www.transformsites.co.uk" target="_blank" rel="noopener">Transform Sites</a></p>
+                <p>Designed by <a href="https://www.transformsites.co.uk" target="_blank" rel="noopener" class="glisten-text">Transform Sites</a></p>
             </div>
         </div>
     </footer>
@@ -2702,6 +2730,7 @@
 
         const countUp = (element) => {
             const target = parseInt(element.getAttribute('data-target'));
+            const suffix = element.getAttribute('data-suffix') || '';
             const duration = 2000;
             const step = target / (duration / 16);
             let current = 0;
@@ -2709,10 +2738,10 @@
             const updateCounter = () => {
                 current += step;
                 if (current < target) {
-                    element.textContent = Math.floor(current).toLocaleString();
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
                     requestAnimationFrame(updateCounter);
                 } else {
-                    element.textContent = target.toLocaleString();
+                    element.textContent = target.toLocaleString() + suffix;
                 }
             };
 
