@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terry & Odell Electrical Contractors Ltd - Your trusted local electrical experts in Gillingham, Dorset. Professional electrical installations, rewiring, testing and more. Call us today!">
+    <title>Terry & Odell Electrical Contractors Ltd | Professional Electrical Services in Gillingham</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="plumber-assets/301908146_491041173029975_4822706286067563824_n-Photoroom.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Google Fonts - Montserrat + Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS CONFIGURATION VARIABLES
+           ============================================ */
+        :root {
+            /* ===================
+               FONT CONFIGURATION
+               =================== */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+
+            /* ===================
+               COLOR CONFIGURATION
+               =================== */
+
+            /* Primary Colors - Terry & Odell Blue */
+            --color-primary: #139dd0;           /* Main brand blue */
+            --color-primary-dark: #0d7aa6;      /* Darker blue for hover states */
+            --color-primary-light: #3eb5e0;     /* Lighter blue for accents */
+
+            /* Secondary Colors - Grays */
+            --color-secondary: #5a6a7a;         /* Gray accent for CTAs */
+            --color-secondary-dark: #485766;    /* Darker gray for hover */
+            --color-secondary-light: #7a8a9a;   /* Lighter gray */
+
+            /* Tertiary Colors */
+            --color-tertiary: #2ecc71;          /* Green for success/trust */
+            --color-tertiary-dark: #27ae60;     /* Darker green */
+            --color-tertiary-light: #58d68d;    /* Lighter green */
+
+            /* Background Colors */
+            --bg-primary: #ffffff;              /* Main background */
+            --bg-secondary: #f8f9fa;            /* Alternate section background */
+            --bg-dark: #1a1a2e;                 /* Dark sections */
+            --bg-overlay: rgba(19, 157, 208, 0.9); /* Blue overlay */
+
+            /* Text Colors */
+            --text-primary: #2d3436;            /* Main text */
+            --text-secondary: #636e72;          /* Muted text */
+            --text-light: #ffffff;              /* Light text on dark bg */
+            --text-heading: #1a1a2e;            /* Heading color */
+
+            /* Icon Colors */
+            --icon-primary: #139dd0;            /* Primary icon color */
+            --icon-secondary: #5a6a7a;          /* Secondary icon color */
+            --icon-light: #ffffff;              /* Light icons */
+            --icon-muted: #636e72;              /* Muted icons */
+
+            /* Border & Shadow */
+            --border-color: #e0e0e0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
+            --shadow-glow: 0 0 30px rgba(19, 157, 208, 0.3);
+
+            /* ===================
+               LOGO WHITE EFFECT
+               =================== */
+            --logo-white-effect: 0;
+
+            /* ===================
+               SPACING & SIZING
+               =================== */
+            --section-padding: 100px;
+            --container-width: 1200px;
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition-speed: 0.3s;
+        }
+
+        /* ============================================
+           BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--color-primary-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Icon Color Classes */
+        .icon-primary { color: var(--icon-primary); }
+        .icon-secondary { color: var(--icon-secondary); }
+        .icon-light { color: var(--icon-light); }
+        .icon-muted { color: var(--icon-muted); }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(19, 157, 208, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(19, 157, 208, 0.5);
+            color: var(--text-light);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(90, 106, 122, 0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(90, 106, 122, 0.5);
+            color: var(--text-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background: var(--text-light);
+            color: var(--color-primary);
+        }
+
+        /* ============================================
+           TOP BANNER
+           ============================================ */
+        .top-banner {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+        }
+
+        .top-banner .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .top-banner-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .top-banner-item i {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .top-banner-item a {
+            color: var(--text-light);
+            transition: color var(--transition-speed);
+        }
+
+        .top-banner-item a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 42px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-md);
+            padding: 15px 0;
+            top: 0;
+        }
+
+        .top-banner.hidden {
+            transform: translateY(-100%);
+            transition: transform var(--transition-speed);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            transition: all var(--transition-speed);
+            filter: brightness(calc(var(--logo-white-effect) * 0 + (1 - var(--logo-white-effect)))) invert(var(--logo-white-effect));
+        }
+
+        .navbar.scrolled .nav-logo img {
+            height: 40px;
+            filter: none;
+        }
+
+        .nav-logo span {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            transition: color var(--transition-speed);
+        }
+
+        .navbar.scrolled .nav-logo span {
+            color: var(--text-heading);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar.scrolled .nav-menu a {
+            color: var(--text-primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 3px;
+            transition: all var(--transition-speed);
+        }
+
+        .navbar.scrolled .mobile-toggle span {
+            background: var(--text-heading);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(19, 157, 208, 0.7) 100%);
+            z-index: -1;
+        }
+
+        .hero-logo-watermark {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55%;
+            max-width: 700px;
+            opacity: 0.08;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-logo-watermark img {
+            width: 100%;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            padding: 200px 0;
+            margin-left: 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-badge i {
+            color: var(--color-primary-light);
+        }
+
+        .hero-badge span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--color-primary-light);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-primary-light);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Glimmer Animation */
+        @keyframes glimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .glimmer-text {
+            background: linear-gradient(
+                90deg,
+                var(--text-light) 0%,
+                var(--text-light) 40%,
+                var(--color-primary-light) 50%,
+                var(--text-light) 60%,
+                var(--text-light) 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glimmer 3s linear infinite;
+        }
+
+        /* ============================================
+           INTRO/ABOUT SECTION
+           ============================================ */
+        .intro {
+            padding: var(--section-padding) 0;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(19, 157, 208, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .intro .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-content {
+            padding-right: 40px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-primary);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--color-primary);
+        }
+
+        .intro h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .intro h2 span {
+            color: var(--color-primary);
+        }
+
+        .intro-lead {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .intro p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed);
+            border-left: 3px solid transparent;
+        }
+
+        .intro-feature:hover {
+            border-left-color: var(--color-primary);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .intro-feature i {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-tertiary);
+            font-size: 1.1rem;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 50%;
+        }
+
+        .intro-feature span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .intro-image {
+            position: relative;
+        }
+
+        .intro-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 3px solid var(--color-primary);
+            border-radius: var(--border-radius-lg);
+            z-index: -1;
+        }
+
+        .intro-image-main {
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-image-badge {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--text-light);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+        }
+
+        .intro-image-badge i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .intro-image-badge span {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .intro-image-badge small {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .intro-cta {
+            margin-top: 30px;
+        }
+
+        /* Stats Counter */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            padding: var(--section-padding) 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card-image {
+            position: relative;
+            height: 200px;
+        }
+
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card-image::after {
+             transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-card-image img {
+            transform: scale(1.1);
+        }
+
+        .service-card:hover .service-card-image::after {
+            transform: scale(1.2)
+        }
+
+        .service-card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .service-card-icon {
+            position: absolute;
+            bottom: -30px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-card-icon i {
+            font-size: 1.4rem;
+            color: var(--icon-light);
+        }
+
+        .service-card-content {
+            padding: 40px 25px 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-card-link i {
+            transition: transform var(--transition-speed);
+            color: var(--icon-primary);
+        }
+
+        .service-card:hover .service-card-link i {
+            transform: translateX(5px);
+        }
+
+        /* ============================================
+           PORTFOLIO/GALLERY SECTION
+           ============================================ */
+        .portfolio {
+            padding: var(--section-padding) 0;
+            background: var(--bg-dark);
+            overflow: hidden;
+        }
+
+        .portfolio .section-header {
+            color: var(--text-light);
+        }
+
+        .portfolio .section-header h2 {
+            color: var(--text-light);
+        }
+
+        .portfolio .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .portfolio .section-tag {
+            color: var(--color-primary-light);
+        }
+
+        .portfolio-slider {
+            display: flex;
+            gap: 30px;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .portfolio-slider:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .portfolio-item {
+            flex-shrink: 0;
+            width: 400px;
+            height: 300px;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 26, 46, 0.95) 0%, rgba(19, 157, 208, 0.6) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-item-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item-overlay h4 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-item-overlay h4 {
+            transform: translateY(0);
+        }
+
+        .portfolio-item-overlay span {
+            color: var(--color-primary-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: translateY(20px);
+            transition: transform 0.4s ease 0.1s;
+        }
+
+        .portfolio-item:hover .portfolio-item-overlay span {
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           REVIEWS/TESTIMONIALS SECTION
+           ============================================ */
+        .reviews {
+            padding: var(--section-padding) 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .reviews::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 80px;
+            left: 10%;
+            font-size: 15rem;
+            color: var(--color-primary);
+            opacity: 0.05;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: var(--border-radius-lg);
+            position: relative;
+            transition: all var(--transition-speed);
+            border: 1px solid transparent;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .review-card.featured {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: var(--text-light);
+            transform: scale(1.05);
+        }
+
+        .review-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .review-stars i {
+            color: #ffc107;
+            font-size: 1.1rem;
+        }
+
+        .review-card.featured .review-stars i {
+            color: #ffc107;
+        }
+
+        .review-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .review-card.featured .review-text {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .review-author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .review-card.featured .review-author-avatar {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .review-author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .review-card.featured .review-author-info h4 {
+            color: var(--text-light);
+        }
+
+        .review-author-info span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .review-card.featured .review-author-info span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .review-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-secondary);
+            color: var(--text-light);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        .faq {
+            padding: var(--section-padding) 0;
+            background: var(--bg-secondary);
+        }
+
+        .faq .container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .faq-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .faq-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .faq-contact {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .faq-contact-icon i {
+            font-size: 1.5rem;
+            color: var(--icon-light);
+        }
+
+        .faq-contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .faq-contact-text span {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-speed);
+        }
+
+        .faq-item:hover {
+            border-color: var(--color-primary);
+        }
+
+        .faq-item.active {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .faq-item.active .faq-question {
+            background: var(--color-primary);
+            color: var(--text-light);
+        }
+
+        .faq-question h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .faq-item.active .faq-question h4 {
+            color: var(--text-light);
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+            flex-shrink: 0;
+        }
+
+        .faq-icon i {
+            font-size: 0.8rem;
+            color: var(--icon-primary);
+            transition: transform var(--transition-speed);
+        }
+
+        .faq-item.active .faq-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-item.active .faq-icon i {
+            transform: rotate(180deg);
+            color: var(--icon-light);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer p {
+            padding: 30px 25px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           CTA/CONTACT SECTION
+           ============================================ */
+        .cta {
+            position: relative;
+            padding: var(--section-padding) 0;
+            background: linear-gradient(rgba(26, 26, 46, 0.92), rgba(26, 26, 46, 0.92)),
+                        url('plumber-assets/testing-out-power-on-switchboard.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .cta .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .cta-content {
+            color: var(--text-light);
+        }
+
+        .cta-content .section-tag {
+            color: var(--color-primary-light);
+        }
+
+        .cta-content h2 {
+            font-size: 2.8rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .cta-content > p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .cta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .cta-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .cta-info-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(19, 157, 208, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cta-info-icon i {
+            font-size: 1.3rem;
+            color: var(--color-primary-light);
+        }
+
+        .cta-info-text h4 {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .cta-info-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .cta-info-text a {
+            color: var(--color-primary-light);
+            font-weight: 600;
+        }
+
+        .cta-info-text a:hover {
+            color: var(--text-light);
+        }
+
+        .cta-form-wrapper {
+            background: var(--bg-primary);
+            padding: 50px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-form-wrapper h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .cta-form-wrapper > p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all var(--transition-speed);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(19, 157, 208, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23636e72' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.05rem;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 80px 0 0;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            padding-right: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            filter: brightness(calc(var(--logo-white-effect) * 0 + (1 - var(--logo-white-effect)))) invert(var(--logo-white-effect));
+        }
+
+        .footer-logo span {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            transition: all var(--transition-speed);
+        }
+
+        .footer-social a:hover {
+            background: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--color-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a::before {
+            content: '\f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact-item i {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .footer-contact-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .footer-contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-credit {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-credit p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .footer-credit a {
+            color: var(--color-primary);
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-credit a:hover {
+            color: var(--color-primary-light);
+        }
+
+        .glisten-text {
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 40%, #fff 50%, var(--color-primary) 60%, var(--color-primary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glisten 3s linear infinite;
+        }
+
+        @keyframes glisten {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+        .animate-delay-4 { transition-delay: 0.4s; }
+        .animate-delay-5 { transition-delay: 0.5s; }
+        .animate-delay-6 { transition-delay: 0.6s; }
+
+        /* ============================================
+           RESPONSIVE STYLES
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 2.8rem; }
+            .intro .container { grid-template-columns: 1fr; gap: 50px; }
+            .intro-content { padding-right: 0; order: -1; }
+            .intro-image { order: 0; }
+            .intro-image-badge { display: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .review-card.featured { transform: none; }
+            .review-card.featured:hover { transform: translateY(-5px); }
+            .faq .container { grid-template-columns: 1fr; gap: 50px; }
+            .cta .container { grid-template-columns: 1fr; }
+            .footer-main { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 1000px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--bg-dark) 0%, var(--color-primary-dark) 100%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding-left: 50px;
+                gap: 25px;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu a {
+                color: var(--text-light);
+                font-size: 1.5rem;
+                opacity: 0;
+                transform: translateX(30px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active a {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-menu.active li:nth-child(1) a { transition-delay: 0.1s; }
+            .nav-menu.active li:nth-child(2) a { transition-delay: 0.15s; }
+            .nav-menu.active li:nth-child(3) a { transition-delay: 0.2s; }
+            .nav-menu.active li:nth-child(4) a { transition-delay: 0.25s; }
+            .nav-menu.active li:nth-child(5) a { transition-delay: 0.3s; }
+            .nav-menu.active li:nth-child(6) a { transition-delay: 0.35s; }
+
+            .nav-menu a:hover {
+                color: var(--color-primary-light);
+            }
+
+            .mobile-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .mobile-toggle.active span {
+                background: var(--color-primary);
+            }
+
+            .mobile-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .mobile-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 70px;
+            }
+
+            .top-banner .container {
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .top-banner-item {
+                font-size: 0.8rem;
+            }
+
+            .navbar {
+                top: 38px;
+            }
+
+            .navbar.scrolled {
+                padding: 18px 0;
+            }
+
+            .hero-content {
+                padding: 180px 0 140px;
+            }
+
+            body.scrolled-nav .hero-content {
+                padding-top: 140px;
+            }
+
+            .scroll-indicator {
+                bottom: 30px;
+            }
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .hero-logo-watermark { display: none; }
+            .hero-stats { flex-wrap: wrap; gap: 30px; }
+            .hero-stat-number { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { width: 100%; }
+
+            .section-header h2,
+            .intro h2,
+            .cta-content h2,
+            .faq-content h2 { font-size: 2rem; }
+
+            .intro-feature {
+                padding: 12px 15px;
+            }
+
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-number { font-size: 2.2rem; }
+
+            .services-grid { grid-template-columns: 1fr; }
+
+            .portfolio-item { width: 300px; height: 220px; }
+
+            .form-row { grid-template-columns: 1fr; }
+            .cta-form-wrapper { padding: 30px; }
+
+            .footer-main { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand { padding-right: 0; }
+            .footer-logo { justify-content: center; }
+            .footer-social { justify-content: center; }
+            .footer-column.footer-quick-links { display: none; }
+            .footer-column h4::after { left: 50%; transform: translateX(-50%); }
+            .footer-links a { justify-content: center; }
+            .footer-links a::before { display: none; }
+            .footer-contact-item { justify-content: center; text-align: left; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-content {
+                padding: 170px 0 130px;
+            }
+            .hero-stats { gap: 20px; }
+            .hero-stat { flex: 0 0 calc(50% - 10px); }
+            .intro-features { grid-template-columns: 1fr; }
+            .intro-image::before { display: none; }
+            .intro-image-badge { position: relative; bottom: 0; right: 0; margin-top: 20px; }
+            .review-card { padding: 25px; }
+            .faq-question { padding: 20px; }
+            .faq-question h4 { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="top-banner-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:office@terryandodell.co.uk">office@terryandodell.co.uk</a>
+            </div>
+            <div class="top-banner-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:07554017456">07554 017 456</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <img src="plumber-assets/301908146_491041173029975_4822706286067563824_n-Photoroom.png" alt="Terry & Odell Electrical Contractors Ltd Logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Our Work</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="plumber-assets/plumbing-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-bolt"></i>
+                    <span>Trusted Local Electrical Experts</span>
+                </div>
+                <h1>Powering Homes & Businesses Across <span>Dorset</span></h1>
+                <p>From rewires to new installations, we deliver expert electrical solutions with reliability and care. Fully qualified, insured, and committed to the highest safety standards.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Get Free Quote
+                    </a>
+                    <a href="tel:07554017456" class="btn btn-outline">
+                        <i class="fas fa-phone"></i>
+                        Call Us Now
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">7+</div>
+                        <div class="hero-stat-label">Years Established</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">1,000+</div>
+                        <div class="hero-stat-label">Happy Customers</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">100%</div>
+                        <div class="hero-stat-label">Safety Compliant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Intro/About Section -->
+    <section class="intro" id="about">
+        <div class="container">
+            <div class="intro-content animate-on-scroll">
+                <span class="section-tag">Who We Are</span>
+                <h2>Professional Electrical Services <span>Since 2018</span></h2>
+                <p class="intro-lead">Reliable electrical contractors you can trust, delivering quality workmanship across Gillingham and the wider Dorset area.</p>
+                <p>At Terry & Odell Electrical Contractors Ltd, we bring expertise and dedication to every electrical project. Whether you need a simple socket installation or a complete rewire, our fully qualified team ensures your electrical systems are safe, efficient, and built to last.</p>
+                <p>Based in Gillingham, Dorset, we've built our reputation on honest advice, competitive pricing, and workmanship you can rely on. We treat every property like our own, ensuring your complete satisfaction on every job.</p>
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Fully Qualified</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Fully Insured</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Free Quotes</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>NICEIC Approved</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Workmanship Guarantee</span>
+                    </div>
+                    <div class="intro-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Transparent Pricing</span>
+                    </div>
+                </div>
+                <div class="intro-cta">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-phone"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+            <div class="intro-image animate-on-scroll animate-delay-2">
+                <img src="plumber-assets/man-touching-fuse-board.jpg" alt="Professional electrician at work" class="intro-image-main">
+                <div class="intro-image-badge">
+                    <i class="fas fa-bolt"></i>
+                    <span>7+</span>
+                    <small>Years of Excellence</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <i class="fas fa-home stat-icon"></i>
+                    <div class="stat-number" data-target="1000">0</div>
+                    <div class="stat-label">Properties Served</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-1">
+                    <i class="fas fa-bolt stat-icon"></i>
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Jobs Completed</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-2">
+                    <i class="fas fa-smile stat-icon"></i>
+                    <div class="stat-number" data-target="100" data-suffix="%">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item animate-on-scroll animate-delay-3">
+                    <i class="fas fa-certificate stat-icon"></i>
+                    <div class="stat-number" data-target="7">0</div>
+                    <div class="stat-label">Years Established</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">What We Do</span>
+                <h2>Our Professional Services</h2>
+                <p>From domestic repairs to commercial installations, we provide comprehensive electrical services with the highest safety standards.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/man-touching-fuse-board.jpg" alt="Consumer Unit Installation">
+                        <div class="service-card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Consumer Units</h3>
+                        <p>Upgrade your fuse board to a modern consumer unit with RCD protection. Keep your home safe with the latest safety standards.</p>
+                        <a href="#contact" class="service-card-link">
+                            Get Quote <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-1">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/installing-component-on-electric-board.jpg" alt="Rewiring Services">
+                        <div class="service-card-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Rewiring</h3>
+                        <p>Complete house rewiring services for older properties. We ensure your electrical system meets current regulations and safety requirements.</p>
+                        <a href="#contact" class="service-card-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-2">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/testing-out-power-on-switchboard.jpg" alt="Testing & Inspection">
+                        <div class="service-card-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Testing & Inspection</h3>
+                        <p>EICR testing and electrical safety certificates for landlords, homeowners, and businesses. Stay compliant with regulations.</p>
+                        <a href="#contact" class="service-card-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-3">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/man-testing-wires-with-machine.jpg" alt="Fault Finding">
+                        <div class="service-card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Fault Finding</h3>
+                        <p>Expert diagnostic services to locate and repair electrical faults. We identify issues quickly and provide lasting solutions.</p>
+                        <a href="#contact" class="service-card-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-4">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/industrial-piping.jpg" alt="Commercial Electrical">
+                        <div class="service-card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Commercial Work</h3>
+                        <p>Electrical installations and maintenance for businesses, shops, and commercial premises. Minimise downtime with professional service.</p>
+                        <a href="#contact" class="service-card-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="service-card animate-on-scroll animate-delay-5">
+                    <div class="service-card-image">
+                        <img src="plumber-assets/household-piping-system.jpg" alt="Lighting Installation">
+                        <div class="service-card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3>Lighting & Sockets</h3>
+                        <p>New light fittings, additional sockets, and outdoor lighting installations. Enhance your property with professional electrical work.</p>
+                        <a href="#contact" class="service-card-link">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Our Portfolio</span>
+                <h2>Recent Projects</h2>
+                <p>Take a look at some of our recent electrical work. Every project is completed to the highest standards with attention to detail.</p>
+            </div>
+        </div>
+        <div class="portfolio-slider">
+            <!-- First set of images -->
+            <div class="portfolio-item">
+                <img src="plumber-assets/testing-out-power-on-switchboard.jpg" alt="Consumer Unit Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Consumer Unit Upgrade</h4>
+                    <span>Gillingham</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/installing-component-on-electric-board.jpg" alt="Commercial Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Commercial Rewire</h4>
+                    <span>Shaftesbury</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/man-testing-wires-with-machine.jpg" alt="EICR Testing">
+                <div class="portfolio-item-overlay">
+                    <h4>EICR Inspection</h4>
+                    <span>Mere</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/man-touching-fuse-board.jpg" alt="Fuse Board">
+                <div class="portfolio-item-overlay">
+                    <h4>Fuse Board Replacement</h4>
+                    <span>Wincanton</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/industrial-piping.jpg" alt="Commercial Project">
+                <div class="portfolio-item-overlay">
+                    <h4>Industrial Installation</h4>
+                    <span>Yeovil</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/household-piping-system.jpg" alt="Domestic Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Full Rewire</h4>
+                    <span>Sturminster Newton</span>
+                </div>
+            </div>
+            <!-- Duplicate set for seamless scrolling -->
+            <div class="portfolio-item">
+                <img src="plumber-assets/testing-out-power-on-switchboard.jpg" alt="Consumer Unit Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Consumer Unit Upgrade</h4>
+                    <span>Gillingham</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/installing-component-on-electric-board.jpg" alt="Commercial Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Commercial Rewire</h4>
+                    <span>Shaftesbury</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/man-testing-wires-with-machine.jpg" alt="EICR Testing">
+                <div class="portfolio-item-overlay">
+                    <h4>EICR Inspection</h4>
+                    <span>Mere</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/man-touching-fuse-board.jpg" alt="Fuse Board">
+                <div class="portfolio-item-overlay">
+                    <h4>Fuse Board Replacement</h4>
+                    <span>Wincanton</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/industrial-piping.jpg" alt="Commercial Project">
+                <div class="portfolio-item-overlay">
+                    <h4>Industrial Installation</h4>
+                    <span>Yeovil</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="plumber-assets/household-piping-system.jpg" alt="Domestic Installation">
+                <div class="portfolio-item-overlay">
+                    <h4>Full Rewire</h4>
+                    <span>Sturminster Newton</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Testimonials</span>
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it - hear from customers who've experienced the Terry & Odell difference.</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Excellent service from start to finish. They upgraded our consumer unit and added extra sockets throughout the house. Very professional and tidy workers."</p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">RH</div>
+                        <div class="review-author-info">
+                            <h4>Robert Harrison</h4>
+                            <span>Homeowner, Gillingham</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card featured animate-on-scroll animate-delay-1">
+                    <span class="review-badge">Featured</span>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Terry & Odell rewired our 1930s cottage. The team were fantastic - knowledgeable, respectful of our home, and completed the work to an exceptional standard. Highly recommend!"</p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">SW</div>
+                        <div class="review-author-info">
+                            <h4>Sarah Wilkins</h4>
+                            <span>Property Owner, Shaftesbury</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card animate-on-scroll animate-delay-2">
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Used them for our EICR certificates on multiple rental properties. Always reliable, competitively priced, and they explain everything clearly. Our go-to electricians now!"</p>
+                    <div class="review-author">
+                        <div class="review-author-avatar">MP</div>
+                        <div class="review-author-info">
+                            <h4>Mark Phillips</h4>
+                            <span>Landlord, Mere</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-content animate-on-scroll">
+                <span class="section-tag">Got Questions?</span>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our electrical services, pricing and what to expect when you work with us.</p>
+                <div class="faq-contact">
+                    <div class="faq-contact-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="faq-contact-text">
+                        <h4>Still have questions?</h4>
+                        <span>Call us: 07554 017 456</span>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item active animate-on-scroll">
+                    <div class="faq-question">
+                        <h4>Are you a registered electrical contractor?</h4>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Terry & Odell Electrical Contractors Ltd is a fully registered company. All our electricians are fully qualified and we carry comprehensive insurance. We can provide all necessary certificates and documentation for any work completed.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll animate-delay-1">
+                    <div class="faq-question">
+                        <h4>Do you provide free quotes?</h4>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide free, no-obligation quotes for all electrical work. We'll visit your property, assess the job, and provide a detailed written quote. The price we quote is the price you pay - no hidden costs or surprises.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll animate-delay-2">
+                    <div class="faq-question">
+                        <h4>What areas do you cover?</h4>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're based in Gillingham, Dorset and cover the surrounding areas including Shaftesbury, Mere, Wincanton, Sturminster Newton, Yeovil, and throughout North Dorset and South Somerset. Contact us to check if we cover your area.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll animate-delay-3">
+                    <div class="faq-question">
+                        <h4>Do you issue electrical certificates?</h4>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we issue all appropriate electrical certificates including Electrical Installation Certificates, Minor Works Certificates, and EICR (Electrical Installation Condition Reports). These are essential for insurance, selling your property, or landlord compliance.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll animate-delay-4">
+                    <div class="faq-question">
+                        <h4>How long does a typical rewire take?</h4>
+                        <div class="faq-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A full rewire typically takes between 5-10 days depending on the size of the property and the complexity of the work. We'll give you an accurate timeline during our initial quote visit and keep you informed throughout the project.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA/Contact Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="glimmer-text">Ready to Power Up Your Project?</h2>
+                <p>Whether it's a simple repair or a complete installation, we're here to help. Get in touch today for a free, no-obligation quote and experience the Terry & Odell difference.</p>
+                <div class="cta-info">
+                    <div class="cta-info-item">
+                        <div class="cta-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="cta-info-text">
+                            <h4>Our Location</h4>
+                            <p>Pound Ln, Gillingham<br>Dorset, SP8 4NP</p>
+                        </div>
+                    </div>
+                    <div class="cta-info-item">
+                        <div class="cta-info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="cta-info-text">
+                            <h4>Phone Number</h4>
+                            <p><a href="tel:07554017456">07554 017 456</a></p>
+                        </div>
+                    </div>
+                    <div class="cta-info-item">
+                        <div class="cta-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="cta-info-text">
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:office@terryandodell.co.uk">office@terryandodell.co.uk</a></p>
+                        </div>
+                    </div>
+                    <div class="cta-info-item">
+                        <div class="cta-info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="cta-info-text">
+                            <h4>Working Hours</h4>
+                            <p>Mon - Fri: 7:30am - 6pm<br>Sat - Sun: Closed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-form-wrapper animate-on-scroll animate-delay-2">
+                <h3>Request a Free Quote</h3>
+                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                <form class="contact-form" name="contact" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p style="display:none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                    </p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="07123 456 789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Required</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="consumer-unit">Consumer Unit Upgrade</option>
+                                <option value="rewire">Full/Partial Rewire</option>
+                                <option value="testing">Testing & Inspection (EICR)</option>
+                                <option value="fault-finding">Fault Finding</option>
+                                <option value="commercial">Commercial Work</option>
+                                <option value="lighting">Lighting & Sockets</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your electrical project or issue..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="plumber-assets/301908146_491041173029975_4822706286067563824_n-Photoroom.png" alt="Terry & Odell Electrical Contractors Ltd Logo">
+                    </div>
+                    <p>Your trusted local electrical contractors in Gillingham, Dorset. Delivering quality workmanship and exceptional service since 2018. Fully qualified and insured for your peace of mind.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/TerryandOdell/" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/terryandodell/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column footer-quick-links">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Our Work</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Consumer Units</a></li>
+                        <li><a href="#services">Rewiring</a></li>
+                        <li><a href="#services">Testing & Inspection</a></li>
+                        <li><a href="#services">Fault Finding</a></li>
+                        <li><a href="#services">Commercial Work</a></li>
+                        <li><a href="#services">Lighting & Sockets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Pound Ln, Gillingham<br>Dorset, SP8 4NP</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <p><a href="tel:07554017456">07554 017 456</a></p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:office@terryandodell.co.uk">office@terryandodell.co.uk</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Terry & Odell Electrical Contractors Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-credit">
+                <p>Designed by <a href="https://www.transformsites.co.uk" target="_blank" rel="noopener" class="glisten-text">Transform Sites</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // JAVASCRIPT FUNCTIONALITY
+        // ============================================
+
+        // Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            smoothTouch: false,
+            touchMultiplier: 2
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.querySelector('.navbar');
+        const topBanner = document.querySelector('.top-banner');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                topBanner.classList.add('hidden');
+                document.body.classList.add('scrolled-nav');
+            } else {
+                navbar.classList.remove('scrolled');
+                topBanner.classList.remove('hidden');
+                document.body.classList.remove('scrolled-nav');
+            }
+        });
+
+        // Smooth Scroll for Navigation Links (using Lenis)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    lenis.scrollTo(target, {
+                        offset: -80,
+                        duration: 1.2
+                    });
+                }
+            });
+        });
+
+        // Animate on Scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Stats Counter Animation
+        const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+
+        const countUp = (element) => {
+            const target = parseInt(element.getAttribute('data-target'));
+            const suffix = element.getAttribute('data-suffix') || '';
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString() + suffix;
+                }
+            };
+
+            updateCounter();
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all items
+                faqItems.forEach(faq => faq.classList.remove('active'));
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Form Submission Feedback
+        const contactForm = document.querySelector('.contact-form');
+
+        contactForm.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+        });
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
